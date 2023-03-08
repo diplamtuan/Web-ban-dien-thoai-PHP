@@ -21,11 +21,11 @@
 
 <body>
     <!-- Header -->
-    <div class="container header d-flex align-items-center justify-content-between fixed-top">
+    <div class="container header d-flex align-items-center justify-content-between sticky-top">
         <a class="header_logo" href="#">
             <img src="./assets/img/logovorke123.png" alt="">
         </a>
-        <div class="header_nav">
+        <div class="header_nav d-none d-xl-block">
             <a class="header_name" href="#">Điện Thoại</a>
             <a class="header_name" href="#">Sản phẩm IoT</a>
             <a class="header_name" href="#">Về Vorke</a>
@@ -35,9 +35,59 @@
             </button>
             <a class="header_name" href="#">Đăng ký/ Đăng nhập</a>
         </div>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-magnifying-glass d-xl-none"></i>
+
+        <!-- Mobile bars icon -->
+        <div class="mobile-toggler d-xl-none">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#navbModal">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+        </div>
+
     </div>
     <!-- Header -->
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="navbModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- Thay anh thuong hieu -->
+                    <img src="./assets/img/logovorke123.png" alt="">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Tao tung modal line -->
+                    <div class="modal-line">
+                        <i class="fa-solid fa-mobile"></i><a href="/" class="">Điện Thoại</a>
+                    </div>
+                    <div class="modal-line">
+                        <i class="fa-brands fa-product-hunt"></i><a href="/" class="">Sản phẩm IoT</a>
+                    </div>
+                    <div class="modal-line">
+                        <i class="fa-solid fa-address-card"></i><a href="/" class="">Về Vorke</a>
+                    </div>
+                    <div class="modal-line">
+                        <i class="fa-solid fa-address-card"></i> <a href="/" class="">Đơn hàng</a>
+                    </div>
+                    <div class="modal-line">
+                        <i class="fa-solid fa-right-to-bracket"></i><a href="/" class="">Đăng ký/ Đăng nhập</a>
+                    </div>
+                </div>
+                <div class="mobile-modal-footer">
+                    <a target="_blank" href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a target="_blank" href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a target="_blank" href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a target="_blank" href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
     <!-- Slider -->
 
     <div class="slider container-fluid">
@@ -217,7 +267,7 @@
 
                     <!--Grid column-->
                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0 member">
-                        <h5 class="text-uppercase mb-4">Member</h5>
+                        <h5 class="text-uppercase mb-4">Thành viên</h5>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">

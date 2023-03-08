@@ -17,12 +17,23 @@ $(document).ready(function () {
         nextArrow: '<button type="button" class="slick-next"><i class="fa-solid fa-circle-right"></i></button>',
         responsive: [
             {
+                breakpoint: 1367,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true,
+                    arrows: false,
+                }
+            },
+            {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    arrows: false,
                 }
             },
             {
@@ -31,6 +42,7 @@ $(document).ready(function () {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     dots: true,
+                    arrows: false,
                 }
             },
             {
@@ -39,6 +51,7 @@ $(document).ready(function () {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     dots: true,
+                    arrows: false,
                 }
             }
 
@@ -84,4 +97,7 @@ $(document).ready(function () {
         ]
     });
 });
+
+
+
 

@@ -66,7 +66,7 @@ html {
 /* Slick slider */
 .slider {
     padding: 0;
-    margin-top: 80px;
+    /* margin-top: 80px; */
     position: relative;
     display: flex;
     justify-content: center;
@@ -370,4 +370,148 @@ html {
 /* copy-right */
 footer .copy-right {
     font-size: 2rem;
+}
+
+/* Modal */
+
+.mobile .modal-dialog {
+    margin: 0;
+    width: 430px;
+}
+
+
+@media(max-width: 450px) {
+    .mobile .modal-dialog {
+        width: 100%;
+    }
+}
+
+
+.mobile .modal-content {
+    border-radius: 0;
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.mobile .modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 88%;
+    margin: 0 auto;
+    padding-bottom: 16px;
+    border-bottom: 2px solid black;
+}
+
+.mobile .modal-header img {
+    width: 140px;
+    height: 66px;
+    margin-top: 17.5px;
+}
+
+.mobile .modal-header .btn-close {
+    background: transparent;
+    opacity: 1;
+}
+
+.mobile .modal-header .btn-close i {
+    font-size: 30px;
+    color: black;
+}
+
+.mobile .modal-header .btn-close:hover {
+    opacity: 0.4;
+}
+
+.mobile .modal-body {
+    width: 80%;
+    margin: 0 auto;
+    padding: 75px 0 0 0;
+    flex: unset;
+}
+
+.mobile .modal-body .modal-line {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 7px 0;
+    margin-bottom: 50px;
+    cursor: pointer;
+    transition: all 0.5 ease;
+    color: black;
+    border-bottom: 1px solid #000;
+    font-size: 2.5rem;
+}
+
+.mobile .modal-body .modal-line a {
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+}
+
+.mobile .modal-body .modal-line i {
+    margin-right: 15px;
+    width: 35px;
+    padding: 0 0 3px 3px;
+}
+
+.mobile .modal-body .modal-line:hover {
+    opacity: 0.4;
+}
+
+
+.mobile .mobile-modal-footer {
+    width: 87%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20% 0;
+    margin: 0 auto;
+    font-size: 2.5rem;
+}
+
+.mobile .mobile-modal-footer i {
+    color: black;
+}
+
+.mobile .mobile-modal-footer i:hover {
+    opacity: 0.4;
+}
+
+/* Modal input search */
+
+.search .modal-dialog {
+    width: 50vw;
+    height: 50vh;
+}
+
+
+.search .search-input {
+    height: 48px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+}
+
+.search .search-input span {
+    border: none;
+    background: white;
+}
+
+.search .search-input span i {
+    font-size: 2.5rem;
+    color: black;
+}
+
+.search .search-input input {
+    border: none;
+    font-size: 2.5rem;
+    outline: none !important;
+}
+
+@media(max-width: 450px) {
+    .search .modal-dialog {
+        width: 100%;
+    }
 }

@@ -6,6 +6,40 @@ $(document).ready(function () {
         draggable: false,
         // autoplay: true,
         // autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1367,
+                settings: {
+                    infinite: true,
+                    dots: true,
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    infinite: true,
+                    dots: true,
+                    arrows: false,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    infinite: true,
+                    dots: true,
+                    arrows: false,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    infinite: true,
+                    dots: true,
+                    arrows: false,
+                }
+            }
+
+        ]
     });
     $('.brand_list').slick({
 

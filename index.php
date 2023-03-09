@@ -14,9 +14,8 @@
     <!-- Slick slider -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- slick slider -->
-    <link rel="stylesheet" href="./assets/css/main.css">
-    </link>
-
+    <link rel="stylesheet" href="./assets/css/lamtuan.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
 </head>
 
 <body>
@@ -35,7 +34,14 @@
             </button>
             <a class="header_name" href="#">Đăng ký/ Đăng nhập</a>
         </div>
-        <i class="fa-solid fa-magnifying-glass d-xl-none"></i>
+
+        <!-- Search -->
+        <div class="mobile-toggler">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+        </div>
+
 
         <!-- Mobile bars icon -->
         <div class="mobile-toggler d-xl-none">
@@ -50,14 +56,14 @@
     <!-- Button trigger modal -->
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="navbModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal mobile -->
+    <div class="modal fade mobile" id="navbModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- Thay anh thuong hieu -->
                     <img src="./assets/img/logovorke123.png" alt="">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="modal-body">
                     <!-- Tao tung modal line -->
@@ -88,6 +94,26 @@
     </div>
     <!-- Modal -->
 
+    <!-- Modal search -->
+
+    <div class="modal fade search" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="input-group mb-3 search-input">
+                        <span class="input-group-text" data-bs-dismiss="modal" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-control" placeholder="Tìm kiếm ..." aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Slider -->
 
     <div class="slider container-fluid">
@@ -327,8 +353,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <!-- Slick slider -->
     <!-- link main.js -->
-    <script src="./assets/js/main.js"></script>
-
+    <script src="./assets/js/lamtuan.js"></script>
     <div class="footer"></div>
 </body>
 

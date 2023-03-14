@@ -29,8 +29,8 @@
             <a class="header_name" href="#">Sản phẩm IoT</a>
             <a class="header_name" href="#">Về Vorke</a>
             <button class="header_name header_nav-btn position-relative">Đơn hàng
-                <!-- <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-secondary">10
-                    <span class="visually-hidden">unread messages</span></span> -->
+                <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-secondary">0
+                    <span class="visually-hidden">unread messages</span></span>
             </button>
             <a class="header_name" href="#">Đăng ký/ Đăng nhập</a>
         </div>

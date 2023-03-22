@@ -130,7 +130,45 @@ $(document).ready(function () {
 
         ]
     });
-});
+    // Bat su kien click vao dang nhap 
+    $("#form-1 > .form-title > h3 ").click(function () {
+        location.href = "login.php";
+    });
+    $("#form-2 > .form-title > h3 ").click(function () {
+        location.href = "register.php";
+    });
+
+    $("#logout").click(() => {
+        $.ajax({
+            url: 'function/authcode.php',
+            method: 'post',
+            data: { 'logout': 1 },
+            success: function (data) {
+                alert(data);
+                location.href = 'index.php';
+            }
+        })
+    });
+
+    $("#login-register").click(() => {
+        $.ajax({
+            url: 'function/authcode.php',
+            method: 'post',
+            data: { 'logout': 1 },
+            success: function (data) {
+                location.href = 'login.php';
+            }
+        })
+    })
+
+}
+);
+
+
+
+
+
+
 
 
 

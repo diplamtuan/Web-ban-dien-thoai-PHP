@@ -1,4 +1,3 @@
-<?php include "./DB/dbconnect.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +14,7 @@
     <!-- slick slider -->
     <link rel="stylesheet" href="./assets/css/lamtuan.css">
     <link rel="stylesheet" href="./assets/css/responsive.css">
-    <link rel="stylesheet" href="./assets/css/thai.css">
+    <link rel="stylesheet" href="./assets/css/lethai.css">
 </head>
 
 <body>
@@ -52,6 +51,10 @@
 
     </div>
     <!-- Header -->
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+
+
     <!-- Modal mobile -->
     <div class="modal fade mobile" id="navbModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -111,32 +114,80 @@
         </div>
     </div>
 
+    <!-- Content -->
 
-
-
-
-
-
-
-
-
-    <!-- Load Products -->
-
-    <?php
-    include('./templeProducts/nav_menu.php');
-    include('./templeProducts/main.php');
-    ?>
     <div class="container">
-        <div class="row">
-            <!-- <div class="col-md-2 col-sm-2">
-            </div> -->
-            <div class="col-md-10 col-sm-10">
-                <?php
-                include('./templeProducts/main.php');
-                ?>
+        <div class="content">
+            <div class="content_input-search">
+                <span class="content_input-search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+
+                <input type="text" id="live_search" name="search" placeholder="Tìm kiếm...">
+            </div>
+
+        </div>
+
+        <hr>
+        <!-- Search content -->
+
+        <!-- Menu bar -->
+        <div class="menu_arrange--wrap">
+            <div class="menu_arrange">
+                <span class="menu_arrange-icon"><i class="fa-solid fa-arrow-up-wide-short"></i></span>
+                <span class="menu_arrange-text">Sắp xếp theo</span>
+                <!-- <ul class="menu_list">
+                    <li class="menu_item"><a href="#" onclick="sortProducts('asc')">Giá tăng dần</a></li>
+                    <li class="menu_item"><a href="#" onclick="sortProducts('desc')">Giá giảm dần</a></li>
+                </ul> -->
+                <!-- <ul class="menu_list">
+    <li class="menu_item"><a href="./templeProducts/fetch_data.php?order=asc" class="sort">Giá tăng dần</a></li>
+    <li class="menu_item"><a href="./templeProducts/fetch_data.php?order=desc" class="sort">Giá giảm dần</a></li>
+</ul> -->
+<ul class="menu_list">
+    <li class="menu_item"><a href="#" id="a1">Giá tăng dần</a></li>
+    <li class="menu_item"><a href="#" id="a2">Giá giảm dần</a></li>
+</ul>
+
+
             </div>
         </div>
+
+        <!-- Product wrap -->
+        <?php
+        include('./templeProducts/nav_menu.php');
+        // search
+        // include('./templeProducts/seachproduct.php');
+        // loadproduct
+        include('./templeProducts/main_nav_menu.php');
+
+        ?>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Footer -->
     <div class="container-fluid p-0">
 
@@ -261,24 +312,21 @@
             </div>
             <!-- Copyright -->
         </footer>
+        <!-- Boostrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <!-- Slick slider -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <!-- Slick slider -->
+        <!-- link main.js -->
+        <script src="./assets/js/lethai.js"></script>
+        <script src="./assets/js/lamtuan.js"></script>
 
-    </div>
-    <!-- Boostrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <!-- Slick slider -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- Slick slider -->
-    <!-- link main.js -->
-    <script src="./assets/js/lamtuan.js"></script>
-    <!-- Thai -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="./assets/js/thai.js"></script>
+        <div class="footer"></div>
 
-    <div class="footer"></div>
 
-    <!-- timkiem -->
+
 
 </body>
 

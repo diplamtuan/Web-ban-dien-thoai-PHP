@@ -354,6 +354,7 @@
     <!-- Slick slider -->
     <!-- link main.js -->
     <script src="./assets/js/lamtuan.js"></script>
+    <script src="./assets/js/thai.js"></script>
     <div class="footer"></div>
 </body>
 

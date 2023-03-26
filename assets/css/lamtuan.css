@@ -529,6 +529,7 @@ footer .copy-right {
     align-items: center;
 }
 
+
 .content_input-search input {
     border: none;
     outline: none;
@@ -575,7 +576,6 @@ footer .copy-right {
 .menu_arrange:hover .menu_list {
     display: flex;
 }
-
 .menu_list {
     position: absolute;
     top: 100%;
@@ -587,6 +587,10 @@ footer .copy-right {
     margin-top: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     display: none;
+}
+li.menu_item a {
+    text-decoration: none;
+    color: black;
 }
 
 .menu_list::before {
@@ -622,6 +626,7 @@ footer .copy-right {
 }
 
 .product-list {}
+
 
 .filter-header {
     display: flex;
@@ -673,7 +678,7 @@ footer .copy-right {
 .filter-body-list {
     list-style: none;
     padding-left: 0;
-    margin: 14px 8px 30px;
+    margin: 14px 15px 30px;
     padding: 6px;
 }
 
@@ -684,6 +689,15 @@ footer .copy-right {
     font-size: 1.8rem;
     margin: 16px 0;
     cursor: pointer;
+    
+}
+li.filter-body-item.active a {
+    text-decoration: none;
+    color: black;
+    
+}
+li.filter-body-item.active a:hover {
+    font-weight: 600;
 }
 
 .filter-body-item span {
@@ -807,6 +821,8 @@ footer .copy-right {
 
 .product-item-body h2 {
     font-size: 2.5rem;
+    text-align: center;
+    height: 55px;
 }
 
 .product-item-body>p {
@@ -917,6 +933,7 @@ footer .copy-right {
     justify-content: center;
     align-items: center;
     margin: 0 10px;
+
 }
 
 .pagination_btn div {
@@ -936,3 +953,4 @@ footer .copy-right {
     cursor: pointer;
 
 }
+

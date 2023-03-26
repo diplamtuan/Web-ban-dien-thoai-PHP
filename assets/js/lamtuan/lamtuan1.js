@@ -161,6 +161,12 @@ $(document).ready(function () {
         })
     })
 
+    $(document).on("click", ".brand_list .brand_item", function () {
+        var id_brand = $(this).attr("id_brand");
+        location.href = "product.php?id=" + id_brand;
+    })
+
+
 }
 );
 

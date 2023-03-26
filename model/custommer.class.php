@@ -1,9 +1,9 @@
 <?php
 class Custommer extends Db
 {
-    protected function getCustommers($name)
+    protected function getCustommers()
     {
-        $sql = "SELECT * FROM khachhang where tenkhachhang ='$name'";
+        $sql = "SELECT * FROM khachhang";
         $result = mysqli_query($this->connect(), $sql);
         $resultCheck = mysqli_num_rows($result);
         $data = array();

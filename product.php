@@ -110,7 +110,7 @@ include 'view/brandView.php';
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0 footer_logo">
 
                     <div class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 150px; height: 150px;">
-                        <img src="./assets/img/logovorke123.png" height="70" alt="" loading="lazy" />
+                        <img src="./assets/img/logovorke1231.png" height="70" alt="" loading="lazy" />
                     </div>
 
                     <p class="text-center footer_logo-title">Kết nối cuộc sống thông qua công nghệ với những sản
@@ -330,6 +330,41 @@ include 'view/brandView.php';
             var brand_active = $(".filter-body-list .filter-body-item.active").attr("id");
             loadPage(page_id, brand_active, input);
         });
+        // Bat su kien khi an nut dang ky
+        $("#form-1 > .form-title > h3 ").click(function() {
+            location.href = "login.php";
+        });
+        $("#form-2 > .form-title > h3 ").click(function() {
+            location.href = "register.php";
+        });
+
+        $("#logout").click(() => {
+            $.ajax({
+                url: 'function/authcode.php',
+                method: 'post',
+                data: {
+                    'logout': 1
+                },
+                success: function(data) {
+                    alert(data);
+                    location.href = 'index.php';
+                }
+            })
+        });
+
+        $("#login-register").click(() => {
+            location.href = 'login.php';
+            // $.ajax({
+            //     url: 'function/authcode.php',
+            //     method: 'post',
+            //     data: {
+            //         'logout': 1
+            //     },
+            //     success: function(data) {
+            //         location.href = 'login.php';
+            //     }
+            // })
+        })
     });
 </script>
 <div class="footer"></div>

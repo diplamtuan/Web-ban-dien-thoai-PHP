@@ -146,7 +146,7 @@ include 'header.php';
                     <div class="card-body p-4">
                         <div class="row d-flex justify-content-between align-items-center">
                             <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img src="assets/img/huawei.jpg" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                <img src="/huawei.jpg" class="img-fluid rounded-3" alt="Cotton T-shirt">
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-3">
                                 <p class="lead fw-normal mb-2">Basic T-shirt</p>

@@ -151,14 +151,15 @@ $(document).ready(function () {
     });
 
     $("#login-register").click(() => {
-        $.ajax({
-            url: 'function/authcode.php',
-            method: 'post',
-            data: { 'logout': 1 },
-            success: function (data) {
-                location.href = 'login.php';
-            }
-        })
+        location.href = 'login.php';
+        // $.ajax({
+        //     url: 'function/authcode.php',
+        //     method: 'post',
+        //     data: { 'logout': 1 },
+        //     success: function (data) {
+        //         location.href = 'login.php';
+        //     }
+        // })
     })
 
     $(document).on("click", ".brand_list .brand_item", function () {

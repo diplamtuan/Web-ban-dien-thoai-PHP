@@ -25,7 +25,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Header -->
     <div class="container header d-flex align-items-center justify-content-between sticky-top">
         <a class="header_logo" href="index.php">
-            <img src="./assets/img/logovorke123.png" alt="">
+            <img src="./assets/img/logovorke1231.png" alt="">
         </a>
         <div class="header_nav d-none d-xl-flex">
             <a class="header_name" href="product.php">Điện Thoại</a>
@@ -84,7 +84,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- Thay anh thuong hieu -->
-                    <img src="./assets/img/logovorke123.png" alt="">
+                    <img src="./assets/img/logovorke1231.png" alt="">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="modal-body">

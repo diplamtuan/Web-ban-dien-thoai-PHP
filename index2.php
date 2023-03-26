@@ -1,8 +1,7 @@
 <?php
 include 'model/db.class.php';
-include 'model/custommer.class.php';
-include 'view/custommerView.php';
-include 'controller/custommerCtrl.php';
+include 'model/product.class.php';
+include 'view/productView.php';
 
 ?>
 
@@ -18,12 +17,8 @@ include 'controller/custommerCtrl.php';
 
 <body>
     <?php
-    header('Location:index.php');
-    $custommerObj = new CustommerView();
-    $custommerObj->showCustommer();
-
-    $custommerObj2 = new CustommerCtrl();
-    $custommerObj2->insertCustommer1();
+    $productView = new ProductView();
+    $productView->getProductsView();
     ?>
 </body>
 

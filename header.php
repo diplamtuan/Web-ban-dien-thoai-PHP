@@ -17,18 +17,18 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Slick slider -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- slick slider -->
-    <link rel="stylesheet" href="./assets/css/lamtuan.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/css/lamtuan1.css">
+    <link rel="stylesheet" href="./assets/css/responsive1.css">
 </head>
 
 <body>
     <!-- Header -->
     <div class="container header d-flex align-items-center justify-content-between sticky-top">
-        <a class="header_logo" href="#">
+        <a class="header_logo" href="index.php">
             <img src="./assets/img/logovorke123.png" alt="">
         </a>
         <div class="header_nav d-none d-xl-flex">
-            <a class="header_name" href="#">Điện Thoại</a>
+            <a class="header_name" href="product.php">Điện Thoại</a>
             <a class="header_name" href="#">Sản phẩm IoT</a>
             <a class="header_name" href="#">Về Vorke</a>
             <button class="header_name header_nav-btn position-relative">Giỏ Hàng

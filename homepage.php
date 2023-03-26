@@ -18,10 +18,12 @@ if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $tenthuonghieu = $row['tenthuonghieu'];
         $anh = $row['anh'];
-        echo "<div class='col-xxl-6 col-md-6 col-sm-12 brand_item'>
+        echo "
+        <div class='col-xxl-6 col-md-6 col-sm-12 brand_item' id_brand='{$row['id_thuonghieu']}'>
                 <h4 class='brand_item-name'>$tenthuonghieu</h4>
              <img class='brand_item-img' src='./assets/img/$anh' alt=''>
-    </div>";
+    </div>
+    ";
     }
 
     // Dong the brand

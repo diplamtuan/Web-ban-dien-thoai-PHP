@@ -17,59 +17,68 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Slick slider -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- slick slider -->
-    <link rel="stylesheet" href="./assets/css/lamtuan1.css">
+    <link rel="stylesheet" href="./assets/css/lamtuan.css">
     <link rel="stylesheet" href="./assets/css/responsive1.css">
 </head>
 
 <body>
     <!-- Header -->
-    <div class="container header d-flex align-items-center justify-content-between sticky-top">
-        <a class="header_logo" href="index.php">
-            <img src="./assets/img/logovorke1231.png" alt="">
-        </a>
-        <div class="header_nav d-none d-xl-flex">
-            <a class="header_name" href="product.php">Điện Thoại</a>
-            <a class="header_name" href="#">Sản phẩm IoT</a>
-            <a class="header_name" href="#">Về Vorke</a>
-            <button class="header_name header_nav-btn position-relative">Giỏ Hàng
-                <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-secondary">0
-                    <span class="visually-hidden">unread messages</span></span>
-            </button>
-            <?php
-            if (isset($_SESSION['auth'])) {
-            ?>
-                <div class="dropdown header_name dropdown-profile">
-                    <button class="btn btn-secondary dropdown-toggle profile" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?= $_SESSION['auth_user']['username']; ?>
-                        <i class="fa-regular fa-user"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
-                        <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
-                        <li><a class="dropdown-item" id="logout" href="#">Đăng xuất</a></li>
-                    </ul>
-                </div>
-            <?php
-            } else {
-            ?>
-                <a class="header_name" id="login-register" href="#">Đăng ký/ Đăng nhập</a>
-            <?php
-            } ?>
-        </div>
-
-        <!-- Search -->
-        <div class="mobile-toggler">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="header-fluid sticky-top">
+        <div class="container header d-flex align-items-center justify-content-between">
+            <a class="header_logo" href="index.php">
+                <img src="./assets/img/logovorke1231.png" alt="">
             </a>
-        </div>
+            <div class="header_nav d-none d-xl-flex">
+                <a class="header_name" href="product.php">Điện Thoại</a>
+                <a class="header_name" href="#">Sản phẩm IoT</a>
+                <a class="header_name" href="#">Về Vorke</a>
+                <a href="cart.php" class="header_name header_nav-btn position-relative">Giỏ Hàng
+                    <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-secondary cart_count"><?php
+                                                                                                                                    if (isset($_SESSION['cart'])) {
+                                                                                                                                        echo count($_SESSION['cart']);
+                                                                                                                                    } else {
+                                                                                                                                        echo 0;
+                                                                                                                                    }
+                                                                                                                                    ?>
+                        <span class="visually-hidden">unread messages</span></span>
+                </a>
+                <?php
+                if (isset($_SESSION['auth'])) {
+                ?>
+                    <div class="dropdown header_name dropdown-profile">
+                        <button class="btn btn-secondary dropdown-toggle profile" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?= $_SESSION['auth_user']['username']; ?>
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
+                            <li><a class="dropdown-item" id="logout" href="#">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <a class="header_name" id="login-register" href="#">Đăng ký/ Đăng nhập</a>
+                <?php
+                } ?>
+            </div>
+
+            <!-- Search -->
+            <div class="mobile-toggler">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+            </div>
 
 
-        <!-- Mobile bars icon -->
-        <div class="mobile-toggler d-xl-none">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#navbModal">
-                <i class="fa-solid fa-bars"></i>
-            </a>
+            <!-- Mobile bars icon -->
+            <div class="mobile-toggler d-xl-none">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#navbModal">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+            </div>
+
         </div>
 
     </div>

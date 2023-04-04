@@ -1,55 +1,102 @@
 <?php
 include 'header.php';
+include 'model/db.class.php';
+include 'model/product.class.php';
+include 'view/productView.php';
 ?>
 
-<section class="h-100" style="background-color: #eee;">
-    <div class="container h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-10">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-                    <div>
-                        <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
-                    </div>
+<!-- <!DOCTYPE html>
+<html>
+
+<body> -->
+<?php
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $output = "";
+    $product = new ProductView();
+    $result = $product->getProductByIdView($id);
+    if ($result) {
+        $priceOld = $result['Giadt'];
+        $km  = $result['Sogiamgia'];
+        $km = (float)$km / 100;
+        $priceOld = (int)$priceOld;
+        $priceNew = $priceOld - ($priceOld * $km);
+        $soluong = intval($result['Soluong']);
+        $output .= "
+        <div class='container product_detail'>
+    <div class='row justify-content-center'>
+        <div class='col-xs-4 item-photo'>
+            <img style='max-width:100%;' src='./assets/img/{$result['Anhdt']}' />
+        </div>
+        <div class='col-xs-5' style='border:0px solid gray'>
+            <!-- Datos del vendedor y titulo del producto -->
+            <h3 class='fw-bold'>{$result['Tendt']}</h3>
+            <h5>Hãng: <a href='#'>{$result['tenthuonghieu']}</a>.</h5>
+
+            <!-- Precios -->
+            <h5 class='title-price'>
+                Bảo hành:
+                <span class='fw-bold'>{$result['Tenbaohanh']}</span>
+            </h5>
+            <h5 class='title-price'>
+                Khuyến mãi:
+                <span class='fw-bold'>{$result['Sogiamgia']}%</span>
+            </h5>
+
+            <h4 class='text-decoration-line-through'>
+                {$result['Giadt']}
+            </h4>
+            <h4 style='margin-top:0px;'>
+                {$priceNew} Đ
+            </h4>
+
+            <!-- Detalles especificos del producto -->
+
+            <div class='section' style='padding-bottom:20px;'>
+                <h6 class='title-attr fs-2'><small>Số lượng còn lại :<b class='fs-2 text-black quantityRemain'>{$soluong}</b></small></h6>
+                <div>
+                    <div class='btn-minus'><span class='glyphicon glyphicon-minus'></span></div>
+                    <input value='1' class='quantity' disabled/>
+                    <div class='btn-plus'><span class='glyphicon glyphicon-plus'></span></div>
                 </div>
+            </div>
 
-                <div class="card">
-                    <div class="card-body cart-title">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-center align-items-center col-md-2 col-lg-2 col-xl-2">
-                                <h4>Hình ảnh</h4>
-                            </div>
-                            <div class="d-flex justify-content-start align-items-center col-sm-0 col-md-3 col-lg-2 col-xl-3">
-                                <h4>Tên điện thoại</h4>
-                            </div>
-                            <div class="d-flex justify-content-center align-items-center col-sm-0 col-md-2 col-lg-2 col-xl-2">
-                                <h4>Số lượng</h4>
-                            </div>
-                            <div class="d-flex justify-content-start align-items-center col-sm-0 col-md-2 col-lg-1 col-xl-1 offset-lg-1">
-                                <h4>Giá</h4>
-                            </div>
-                            <div class="d-flex justify-content-start align-items-center col-sm-0 col-md-2 col-lg-2 col-xl-1 offset-lg-1">
-                                <h4>Tổng giá</h4>
-                            </div>
-                            <div class="d-flex justify-content-end   align-items-center col-sm-0 col-md-1 col-lg-1 col-xl-1 text-end">
-                                <h4>Xóa</h4>
-                            </div>
-                        </div>
-                        <!-- Tieu de -->
+            <!-- Botones de compra -->
+            <div class='section product-detail-btn' style='padding-bottom:20px;'>
+                <button class='btn btn-success btn-cart' pid={$id}><span style='margin-right:20px' class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Thêm vào giỏ hàng</button>
+            </div>
+        </div>
 
-                    </div>
-                </div>
-                <div class="cart-list-wrap">
+        <div class='col-xs-9'>
+            <div style='width:100%;border-top:1px solid silver'>
+                <p style='padding:15px;'>
+                    <small>
+                       {$result['Motadt']}
+                    </small>
+                </p>
 
-                </div>
             </div>
         </div>
     </div>
-</section>
-<script>
+</div>
+        ";
+    } else {
+        $output = "Product Details not found";
+    }
+    echo $output;
+}
 
-</script>
+?>
+
+
+
+
+<!-- Footer -->
 <div class="container-fluid p-0">
 
     <footer class="bg-white text-center text-lg-start text-black">
@@ -183,101 +230,62 @@ include 'header.php';
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <!-- Slick slider -->
 <!-- link main.js -->
-<script src="./assets/js1/lamtuan1/lamtuan1.js">
-</script>
+<script src="./assets/js1/lamtuan1/lamtuan1.js"></script>
 <div class="footer"></div>
-
 <script>
     $(document).ready(function() {
-
-        $(document).on("keyup", ".qty", function() {
-            this.value = this.value.replace(/[^\d\\-]/g, ''); //not allowing any characters or symbols except minus
-            this.value = this.value.replace(/\-/g, ''); //not allowing minus sign
-            var pid = $(this).attr("pid");
-            var qty = $(this).val();
-            var price = $(".price-" + pid).text();
-            var totalPrice = qty * price;
-            $(".total-price-" + pid).text(totalPrice);
-            totalPriceFinal()
+        //-- Click on detail
+        $("ul.menu-items > li").on("click", function() {
+            $("ul.menu-items > li").removeClass("active");
+            $(this).addClass("active");
         })
 
+        $(".attr,.attr2").on("click", function() {
+            var clase = $(this).attr("class");
 
-        $(document).on("click", ".minus-qty", function() {
-            var pid = $(this).attr("pid");
-            var qty = $(".qty-" + pid).val();
-            var price = $(".price-" + pid).text();
-            var totalPrice = qty * price;
-            $(".total-price-" + pid).text(totalPrice);
-            totalPriceFinal();
-            updateQty(pid, qty, totalPrice);
+            $("." + clase).removeClass("active");
+            $(this).addClass("active");
         })
 
-        function totalPriceFinal() {
-            var total = $('.cart-list');
-            var totalPrice = 0;
-            for (var i = 0; i < total.length; i++) {
-                var pid = total[i].querySelector('.total-price').getAttribute("pid");
-                var price = total[i].querySelector('.total-price-' + pid).innerText;
-                totalPrice += +price;
+        //-- Click on QUANTITY
+        $(".btn-minus").on("click", function() {
+            var now = $(".section > div > input").val();
+            if ($.isNumeric(now)) {
+                if (parseInt(now) - 1 > 0) {
+                    now--;
+                }
+                $(".section > div > input").val(now);
+            } else {
+                $(".section > div > input").val("1");
             }
-            $('.total_final').html(totalPrice);
-        }
-
-
-        $(document).on("click", ".add-qty", function() {
-            var pid = $(this).attr("pid");
-            var qty = $(".qty-" + pid).val();
-            var price = $(".price-" + pid).text();
-            var totalPrice = qty * price;
-            $(".total-price-" + pid).text(totalPrice);
-            totalPriceFinal()
-            updateQty(pid, qty, totalPrice);
+        })
+        $(".btn-plus").on("click", function() {
+            var quantityRm = $(".quantityRemain").text();
+            var now = $(".section > div > input").val();
+            if (+now < parseInt(quantityRm)) {
+                $(".section > div > input").val(parseInt(now) + 1);
+            } else {
+                $(".section > div > input").val(parseInt(now));
+            }
         })
 
-        function updateQty(pid, qtyUpdate, priceUpdate) {
+        $(".btn-cart").click(function() {
+            var quantity = $(".quantity").val();
+            var id = $(this).attr("pid");
             $.ajax({
                 url: 'function/loadItemCart.php',
                 method: 'POST',
                 data: {
-                    updateCart: 1,
-                    updateCartId: pid,
-                    qtyUpdate: qtyUpdate,
-                    priceUpdate: priceUpdate,
+                    product_id: id,
+                    user_id: -1,
+                    quantity: quantity,
                 },
                 success: function(data) {
                     console.log(data);
-                }
-            })
-        }
-        // Remove item
-        $(document).on("click", ".cart-delete", function() {
-            var pid = $(this).attr("pid");
-            $.ajax({
-                url: 'function/loadItemCart.php',
-                method: "POST",
-                data: {
-                    removeId: pid,
-                },
-                success: function(data) {
-                    loadCart();
-                }
-            })
-        })
-
-        function loadCart() {
-            $.ajax({
-                url: "function/loadItemCart.php",
-                method: "POST",
-                data: {
-                    loadCart: 1
-                },
-                success: function(data) {
-                    $(".cart-list-wrap").html(data);
                     countCart();
                 }
-            })
-        }
-        loadCart();
+            });
+        });
 
         function countCart() {
             $.ajax({
@@ -291,29 +299,6 @@ include 'header.php';
                 }
             });
         }
-        countCart();
-
-        $(document).on("click", ".checkout-btn", function() {
-            var priceTotal = $(".total_final").text();
-            $.ajax({
-                url: 'function/loadItemCart.php',
-                method: 'POST',
-                data: {
-                    checkOut: 1,
-                    priceTotal: priceTotal,
-                },
-                success: function(data) {
-                    if (data != "Chưa đăng nhập") {
-                        console.log(data);
-                        alert("Đặt hàng thành công");
-                        loadCart();
-                    } else {
-                        alert(data);
-                        location.href = 'login.php';
-                    }
-                }
-            })
-        })
 
     })
 </script>

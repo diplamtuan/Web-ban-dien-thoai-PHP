@@ -132,7 +132,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <!-- Slick slider -->
 <!-- link main.js -->
-<script src="./assets/js/lamtuan/lamtuan1.js"></script>
+<script src="./assets/js1/lamtuan1/lamtuan1.js"></script>
 <div class="footer"></div>
 </body>
 

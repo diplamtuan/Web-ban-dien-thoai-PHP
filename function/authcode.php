@@ -44,9 +44,13 @@ if (isset($_POST['login'])) {
 
         $userdata = mysqli_fetch_array($login_query_run);
         $username = $userdata['tentaikhoan'];
+        $user_id = $userdata['id_khachhang'];
+        $user_addr = $userdata['diachi'];
 
         $_SESSION['auth_user'] = [
             'username' => $username,
+            'id_khachhang' =>  $user_id,
+            'diachi' => $user_addr,
         ];
         echo "Đăng nhập thành công";
     } else {

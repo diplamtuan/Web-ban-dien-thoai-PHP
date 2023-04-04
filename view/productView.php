@@ -30,4 +30,14 @@ class ProductView extends Product
         }
         return false;
     }
+
+
+    public function getProductByIdView($id)
+    {
+        $result = $this->getProductsById($id);
+        if ($result) {
+            return $result;
+        }
+        return false;
+    }
 }

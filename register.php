@@ -50,7 +50,7 @@ include 'header.php';
 
     </div>
 
-    <script src="./assets/js/lamtuan/validation.js"></script>
+    <script src="./assets/js1/lamtuan1/validation.js"></script>
     <script>
         Validation({
             form: '#form-1',

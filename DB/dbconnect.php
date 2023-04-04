@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$passwd = "Diplamtuan123.";
+$passwd = "";
 $dbname = "doanweb2";
 
 

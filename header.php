@@ -31,10 +31,23 @@ if (session_status() == PHP_SESSION_NONE) {
             <a class="header_name" href="#">Điện Thoại</a>
             <a class="header_name" href="#">Sản phẩm IoT</a>
             <a class="header_name" href="#">Về Vorke</a>
-            <button class="header_name header_nav-btn position-relative">Giỏ Hàng
-                <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-secondary">0
-                    <span class="visually-hidden">unread messages</span></span>
+            <a href="cart.php">
+                <?php 
+
+                $Quantity = 0;
+                if (isset($_SESSION['cart'])){
+                    $cart = $_SESSION['cart'];
+                    foreach($cart as $value){
+                    $Quantity += $value["Quantity"];
+                }
+            }
+                ?>
+            <button class="header_name header_nav-btn position-relative">
+                Giỏ Hàng</link>
+                <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-secondary" id = "qty"><?php echo $Quantity?><span class="visually-hidden">unread messages</span></span>
+                    
             </button>
+</a>
             <?php
             if (isset($_SESSION['auth'])) {
             ?>

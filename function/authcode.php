@@ -53,6 +53,38 @@ if (isset($_POST['login'])) {
         echo "Sai tài khoản hoặc mật khẩu";
     }
 }
+
+// Kiểm tra tài khoản với trang Administration
+if (isset($_POST['loginAdmin'])) {
+    $username = $_POST['loginAdmin']['username'];
+    $pass = $_POST['loginAdmin']['password'];
+
+    // Kiem tra tai khoan dang nhap hop le hay khong ?
+    $login_query = "SELECT *
+    from nhanvien join quyen on nhanvien.id_quyen = quyen.id_quyen
+    where nhanvien.tentaikhoan='$username' and nhanvien.matkhau = '$pass'";
+    $login_query_run = mysqli_query($conn, $login_query);
+    if (mysqli_num_rows($login_query_run) > 0) {
+
+
+        $userdata = mysqli_fetch_array($login_query_run);
+        $name = $userdata['tennhanvien'];
+        $username = $userdata['tentaikhoan'];
+        $role = $userdata['tenquyen'];
+        if (in_array($role,['Admin', 'Nhân Viên', 'Quản lí'])) {
+            $_SESSION['auth'] = true;
+            $_SESSION['auth_user'] = [
+                'Name' => $name,
+                'username' => $username,
+                'role' => $role
+            ];
+            echo "Đăng nhập thành công";
+        }  else {
+        echo "Sai tài khoản hoặc mật khẩu";
+    }
+}
+}
+
 if (isset($_POST['logout'])) {
     unset($_SESSION['auth']);
     unset($_SESSION['auth_user']);

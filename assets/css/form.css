@@ -1,0 +1,97 @@
+body {
+    background-color: #eee;
+    height: 100vh;
+    font-family: sans-serif;
+    background: linear-gradient(to top, #fff 10%, rgba(93, 42, 141, 0.4) 90%) no-repeat
+}
+
+.form {
+    width: 500px;
+    margin: 10px auto;
+    padding: 32px 24px;
+    background-color: white;
+    border-radius: 13px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    justify-items: center;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #400485;
+    /* font-family: 'Kaushan Script', cursive;
+    font-style: italic */
+}
+
+.form-slogun {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.form__wrap {
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    font-size: 1rem;
+}
+
+.form__wrap.invalid .form__wrap-input {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.form__wrap.invalid .form__error-message {
+    color: red;
+}
+
+.form__wrap-label {
+    font-weight: bold;
+     color: #400485;
+}
+
+.form__wrap-input {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 13px;
+    border: 2px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form__wrap-input:hover {
+    border-color: #400485;
+}
+
+.form__error-message {
+    margin-top: 10px;
+}
+
+.form__button {
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 13px;
+    border: none;
+    background: #400485;
+    color: white;
+}
+
+.form__button:hover {
+    filter: brightness(110%);
+    cursor: pointer;
+}
+
+#form-1 .form-title {
+    color: #400485;
+}
+
+#form-1 .form-title h1:hover,
+#form-1 .form-title h3:hover,
+#form-2 .form-title h1:hover,
+#form-2 .form-title h3:hover {
+    cursor: pointer;
+}

@@ -40,7 +40,7 @@ if ($id_brand == 0) {
     if ($input_value == "") {
         $resultOffical = $ProductView->getProductViewByNumberPage($offset, $limit_per_pages, $id_brand);
     } else {
-        $result = $ProductView->getProductsViewByBrandView($id_brand, $input_value);
+        $result = $ProductView->getProductsViewByBrandView($id_brand);
         $resultOffical = filterSearch($result, $input_value);
     }
 }
@@ -68,7 +68,7 @@ if ($resultOffical) {
         $output .= "<div class='col-4'>
                     <div class='product-item'>
                         <div class='product-item_img'>
-                            <img src='assets/img2/{$product_img}' alt=''>
+                            <img src='assets/img/{$product_img}' alt=''>
                         </div>
                         <div class='product-item-body'>
                             <h2>{$product_name}</h2>

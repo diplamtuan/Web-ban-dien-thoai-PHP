@@ -37,7 +37,7 @@ include 'view/brandView.php';
             <div class="filter-header">
                 <div class="filter-header-item">
                     <i class="fa-solid fa-bars filter-icon"></i>
-                    <span>Lọc theo</span>
+                    <button id="testsp">Lọc theo</button>
                 </div>
 
                 <div class="filter-header-item" id="restart">
@@ -235,7 +235,7 @@ include 'view/brandView.php';
 <script>
     $(document).ready(function() {
 
-
+        
 
         function loadPage(page, id_brand, input_search) {
             $.ajax({
@@ -327,8 +327,8 @@ include 'view/brandView.php';
         $("#search_product").keyup(function() {
             var input = $(this).val();
             var page_id = $(".pagination .pagination_btn>.active").attr("id");
-            var brand_active = $(".filter-body-list .filter-body-item.active").attr("id");
-            loadPage(page_id, brand_active, input);
+            // var brand_active = $(".filter-body-list .filter-body-item.active").attr("id");
+            loadPage(page_id=1, brand_active='', input);
         });
         // Bat su kien khi an nut dang ky
         $("#form-1 > .form-title > h3 ").click(function() {
@@ -365,6 +365,19 @@ include 'view/brandView.php';
             //     }
             // })
         })
+// thaites
+        $('#testsp').click(()=>{
+            var a = 'action';
+            $.ajax({
+                url: 'function/sanphamtest.php',
+                method:'POST',
+                data:{a:a},
+                success:function(data){
+                    $(".col.product-list").html(data);
+                }
+            });
+
+        });
     });
 </script>
 <div class="footer"></div>

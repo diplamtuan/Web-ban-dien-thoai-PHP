@@ -3,8 +3,8 @@ class Db
 {
     private $host = 'localhost';
     private $servername = 'root';
-    private $pwd = 'Diplamtuan123.';
-    private $dbName = 'doanweb2';
+    private $pwd = '';
+    private $dbName = 'projectphp';
     protected $conn;
     protected function connect()
     {

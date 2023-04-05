@@ -17,7 +17,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Slick slider -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- slick slider -->
-    <link rel="stylesheet" href="./assets/css/lamtuan.css">
+    <link rel="stylesheet" href="./assets/css/lamtuan1.css">
     <link rel="stylesheet" href="./assets/css/responsive1.css">
 </head>
 
@@ -52,7 +52,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
-                            <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="order.php">Đơn hàng</a></li>
                             <li><a class="dropdown-item" id="logout" href="#">Đăng xuất</a></li>
                         </ul>
                     </div>

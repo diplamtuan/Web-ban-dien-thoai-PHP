@@ -1362,11 +1362,11 @@ html {
 }
 
 #progressbar-2 li.active:before {
-    background: red;
+    background: #6520ff;
 }
 
 #progressbar-2 li.active:after {
-    background: red;
+    background: #6520ff;
 }
 
 #progressbar-2 li.active:before,
@@ -1446,10 +1446,47 @@ html {
     background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1))
 }
 
-.order-detail-wrapper {
-    margin: auto;
+/* Radio order */
+
+.order_radio {
+    width: 20px;
+    height: 20px;
+
 }
 
-.order_detail-dialog {}
+.table-header {
+    border-bottom: 2px solid black;
+}
 
-.order_detail-wrapper .order_detail-content {}
+.chitietdonhang {
+    background: #8c9eff;
+}
+
+.chitietdonhang:hover {
+    background: black;
+    color: white;
+}
+
+.body_donhang {
+    margin-top: 10px;
+}
+
+.cancel.notActive {
+    background: #ccc;
+    border: none;
+}
+
+.pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.fullfill {
+    color: green;
+    font-weight: bold;
+}
+
+.reject {
+    color: red;
+    font-weight: bold;
+}

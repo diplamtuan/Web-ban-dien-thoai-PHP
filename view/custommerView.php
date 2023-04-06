@@ -1,8 +1,16 @@
 <?php
 class CustommerView extends Custommer
 {
-    public function getCustommerByIdView($id)
+    public function showCustommer()
     {
-        return $this->getCustommerById($id);
+        $result = $this->getCustommers();
+        foreach ($result as $value) {
+            echo $value["tenkhachhang"];
+            echo "<br>";
+            echo $value["diachi"];
+            echo "<br>";
+            echo $value["sdt"];
+            echo "<br>";
+        }
     }
 }

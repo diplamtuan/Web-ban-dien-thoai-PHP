@@ -38,13 +38,5 @@ if ($result) {
 } else {
   echo json_encode(['error' => 'Truy vấn không thành công']);
 }
-
-// $respons = array(
-//   'ID_dienthoai' => 'John',
-//   'Giadt' => 'Doe',
-//   'email' => 'john.doe@example.com'
-// );
-// echo json_encode($respons);
-
 ?>
 

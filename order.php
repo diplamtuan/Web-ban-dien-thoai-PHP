@@ -4,37 +4,67 @@ include 'header.php';
 
 <section class="vh-100" style="background-color: #8c9eff;">
     <div class="container py-5 h-100">
-        <div class="d-flex flex-column align-items-center h-100">
-            <div class="col-12 mb-5 status-order">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-stepper text-black" style="border-radius: 16px;">
 
-            </div>
+                    <div class="card-body p-5 card-body-border">
 
-            <h2 class="text-center fs-1">Danh sách đơn hàng</h2>
+                        <div class="d-flex justify-content-between align-items-center mb-5">
+                            <div>
+                                <h5 class="mb-0">INVOICE <span class="text-primary font-weight-bold">#Y34XDHR</span></h5>
+                            </div>
+                            <div class="text-end">
+                                <p class="mb-0">Expected Arrival <span>01/12/19</span></p>
+                                <p class="mb-0">USPS <span class="font-weight-bold">234094567242423422898</span></p>
+                            </div>
+                        </div>
 
-            <section class="intro" id="orderAll">
+                        <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2 progressbar">
+                            <li class="step0 active text-center" id="step1"></li>
+                            <li class="step0 active text-center" id="step2"></li>
+                            <li class="step0 text-center" id="step3"></li>
+                            <li class="step0 text-muted text-end" id="step4"></li>
+                        </ul>
 
-                <!-- <div class='container-fluid  mt-100 cart-emtpy'>
-                    <div class='row'>
-                        <div class='col-md-12'>
-                            <div class='card'>
-                                <div class='card-header'>
-                                    <h5>Đơn hàng</h5>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-lg-flex align-items-center">
+                                <i class="fas fa-clipboard-list fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                <div>
+                                    <p class="fw-bold mb-1">Order</p>
+                                    <p class="fw-bold mb-0">Processed</p>
                                 </div>
-                                <div class='card-body cart'>
-                                    <div class='col-sm-12 empty-cart-cls text-center'>
-                                        <img src='https://cdn.dribbble.com/users/1373705/screenshots/5854319/media/af9c4867c1ff6a62f580c27728f371b5.png?compress=1&resize=400x300' width='130' height='130' class='img-fluid mb-4 mr-3'>
-                                        <h3><strong>Lịch sử đơn hàng của bạn đang trống</strong></h3>
-                                        <h4>Thêm một vài sản phẩm để làm tôi vui :)</h4>
-                                        <a href='./product.php' class='btn btn-primary cart-btn-transform m-3' data-abc='true'>Tiếp tục mua hàng</a>
-                                    </div>
+                            </div>
+                            <div class="d-lg-flex align-items-center">
+                                <i class="fas fa-box-open fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                <div>
+                                    <p class="fw-bold mb-1">Order</p>
+                                    <p class="fw-bold mb-0">Shipped</p>
+                                </div>
+                            </div>
+                            <div class="d-lg-flex align-items-center">
+                                <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                <div>
+                                    <p class="fw-bold mb-1">Order</p>
+                                    <p class="fw-bold mb-0">En Route</p>
+                                </div>
+                            </div>
+                            <div class="d-lg-flex align-items-center">
+                                <i class="fas fa-home fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                                <div>
+                                    <p class="fw-bold mb-1">Order</p>
+                                    <p class="fw-bold mb-0">Arrived</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div> -->
-            </section>
-        </div>
 
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </section>
@@ -174,95 +204,11 @@ include 'header.php';
 <!-- link main.js -->
 <script src="./assets/js1/lamtuan1/lamtuan1.js"></script>
 <div class="footer"></div>
-<div class="modal fade slide-up" id="exampleModal123" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered order_detail-wrapper">
-        <div class='modal-content order_detail-content'>
-            <div class='modal-body '>
-                <div class='card' style='border-radius: 10px;' id="cart-wrapper">
+<script>
+    $(document).ready(function() {
 
+    })
+</script>
+</body>
 
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <script>
-        $(document).ready(function() {
-            function loadOrder() {
-                $.ajax({
-                    url: 'function/loadOrder.php',
-                    method: 'POST',
-                    data: {
-                        loadOrder: 1,
-                    },
-                    success: function(data) {
-                        $("#orderAll").html(data);
-                    }
-                })
-            }
-            loadOrder();
-
-            $(document).on('click', ".chitietdonhang", function() {
-                var oid = $(this).attr('oid');
-                $.ajax({
-                    url: 'function/loadOrder.php',
-                    method: 'POST',
-                    data: {
-                        loadOrderDetail: 1,
-                        order_id: oid,
-                    },
-                    success: function(data) {
-                        $("#cart-wrapper").html(data);
-                    }
-                })
-            })
-
-            // Click vao nut radio
-            $(document).on('click', ".order_radio", function() {
-                var oid = $(this).attr('oid');
-                var Madh = $("#Ma-" + oid).text();
-                var Ngaygiao = $("#Ngaygiao-" + oid).text();
-                var Trangthai = $("#Trangthai-" + oid).text();
-                loadStatusOrder(Madh, Ngaygiao, Trangthai);
-            })
-
-            function loadStatusOrder(Madh, Ngaygiao, Trangthai) {
-                $.ajax({
-                    url: 'function/loadOrder.php',
-                    method: 'POST',
-                    data: {
-                        loadStatusOrder: 1,
-                        Madh: Madh,
-                        Ngaygiao: Ngaygiao,
-                        Trangthai: Trangthai,
-                    },
-                    success: function(data) {
-                        $(".status-order").html(data);
-                    }
-                })
-            }
-
-            // Click vao nut Huy don hang
-            $(document).on('click', '.cancel.active', function() {
-                var id_order = $(this).attr('oid');
-                var commit = confirm("Bạn có muốn hủy đơn hàng");
-                if (commit) {
-                    $.ajax({
-                        url: 'function/loadOrder.php',
-                        method: 'POST',
-                        data: {
-                            updateCancelStatus: 1,
-                            id_order: id_order,
-                        },
-                        success: function(data) {
-                            console.log(data);
-                            loadOrder();
-                        }
-                    })
-                }
-            })
-        })
-    </script>
-    </body>
-
-    </html>
+</html>

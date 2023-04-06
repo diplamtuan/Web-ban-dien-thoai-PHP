@@ -224,4 +224,14 @@ protected function getCartegory(){
             return false;
         }
     }
+    // UPDATE dienthoai SET ID_thuonghieu=1,ID_Nhacungcap=1,Tendt='lehongthai',Anhdt='thai.jpg',Motadt='deptrai',Giadt=1200,Soluong=3,Luotxem=39,ID_khuyenmai=1,ID_baohanh=1 WHERE ID_dienthoai=17
+    protected function UpdateProduct($id_product,$ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh){
+        $sql = "UPDATE dienthoai SET ID_thuonghieu=$ID_th,ID_Nhacungcap=$ID_ncc,Tendt='$Tendt',Anhdt='$Anhdt',Motadt='$Mota',Giadt=$Gia,Soluong=$soluong,Luotxem=$luotxem,ID_khuyenmai=$ID_km,ID_baohanh=$ID_bh WHERE ID_dienthoai=$id_product";
+        $result = mysqli_query($this->connect(),$sql);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -5,7 +5,7 @@ include '../../view/ADMINsanphamView.php';
 $sanpham = new sanphamview();
 
 ?>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal_dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,8 +108,14 @@ $sanpham = new sanphamview();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" name='Edit' id="button_edit">Edit</button>
+        <button type="button" class="btn btn-success" data-key='edit' name='edit' id="button_edit">
+          Edit
+        </button>
+        <button type="button" class="btn btn-success" data-key='insert' name='insert' id="button_insert">
+          Insert Product
+        </button>
       </div>
+
     </div>
   </div>
 </div>

@@ -14,9 +14,4 @@ class CartCtrl extends Cart
             return false;
         }
     }
-
-    public function updateCancelStatusOrderCtrl($id_order)
-    {
-        return $this->updateCancelStatusOrder($id_order);
-    }
 }

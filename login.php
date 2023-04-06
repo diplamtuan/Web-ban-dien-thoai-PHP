@@ -56,13 +56,8 @@ include 'header.php';
                             if (data == 'Sai tài khoản hoặc mật khẩu') {
                                 alert(data);
                             } else {
-                                if (data == "Day la khach hang") {
-                                    alert("Đăng nhập trang chủ thành công");
-                                    location.href = 'index.php';
-                                } else {
-                                    alert("Đăng nhập trang quản trị thành công");
-                                    location.href = 'admin/index.php';
-                                }
+                                alert(data);
+                                location.href = 'index.php';
                             }
                         }
                     })

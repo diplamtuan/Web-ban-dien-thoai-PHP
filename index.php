@@ -1,10 +1,4 @@
-<?php
-// session_start();
-// if (isset($_SESSION['auth_user']['id_nhanvien'])) {
-//     header('location:admin/index.php');
-// }
-
-include_once "./DB/dbconnect.php"
+<?php include_once "./DB/dbconnect.php"
 ?>
 <?php
 include 'header.php';

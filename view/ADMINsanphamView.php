@@ -122,4 +122,11 @@ public function getInforSPProductView($input,$offset, $limit_per_pages){
         }
         return $result;
     }
+    public function getUpdataProduct($id_product,$ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh){
+        $result = $this->UpdateProduct($id_product,$ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh);
+        if($result == false) {
+            return false;
+        }
+        return $result;
+    }
 }

@@ -43,15 +43,17 @@ if ($id_brand == '') {
 
 if ($result) {
 
-    $output .= '
-<div class="col-2">
-        <button type="button" class="btn btn-success" name="Add" id="button_add">Add New Product</button>
+    $output .= "
+<div class='col-2'>
+<button  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_dialog' data-action ='AddProduct' data-id=' '>
+Add product
+</button> 
 
     </div>
     </div>
 
 
-';
+";
     $output .= '
 
         <table class="table table-bordered table-dark table-striped" >
@@ -88,11 +90,12 @@ if ($result) {
        <td>$TenTH</td>
        <td>$TenNCC</td>
       <td>
-          <a href='view.php?id=" . $data['ID_dienthoai'] . "' class='btn btn-info'>Read More</a>
-          <a href='edit.php?id=" . $data['ID_dienthoai'] . "'class='btn btn-warning'>Edit</a>
-          <button data-id_product='$ID_dt' class = 'btn btn-danger del_product' name='delete_data' >Delete</button>
-          <button  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop' data-id=' $ID_dt '  >
-          Detail
+          <button  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_dialog' data-action ='Reard' data-id=' $ID_dt'>
+          Read more
+        </button> 
+                  <button data-id_product='$ID_dt' class = 'btn btn-danger del_product' name='delete_data' >Delete</button>
+          <button  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_dialog' data-action ='Edit' data-id=' $ID_dt'>
+          Edit
         </button>  
         </td>    
   </tr>

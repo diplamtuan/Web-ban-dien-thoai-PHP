@@ -1,30 +1,27 @@
 <?php
-include '../DTO/CustommerModel.php';
 class Custommer extends Db
 {
-    protected function getCustommerById($id)
+    protected function getCustommers()
     {
-        $sql = "SELECT * FROM khachhang where id_khachhang='$id'";
+        $sql = "SELECT * FROM khachhang";
         $result = mysqli_query($this->connect(), $sql);
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_array($result);
-            return $row;
-        } else return false;
+        $resultCheck = mysqli_num_rows($result);
+        $data = array();
+        if ($resultCheck > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        }
     }
 
-    protected function updateCustommerProfile(CustommerModel $custommer)
+    protected function insertCustommer($tenkhachhang, $diachi, $sdt, $email, $tentaikhoan, $mathau, $trangthai)
     {
-        $id_kh = $custommer->getId();
-        $tenkh = $custommer->getTenKH();
-        $gioitinh = $custommer->getGioitinh();
-        $diachi = $custommer->getDiachi();
-        $sdt = $custommer->getSdt();
-        $email = $custommer->getEmail();
-        $sql = "UPDATE khachhang 
-        set tenkhachhang = '$tenkh',gioitinh='$gioitinh',diachi='$diachi',sdt='$sdt',email='$email'
-        where khachhang.id_khachhang = '$id_kh'";
+        $sql = "INSERT into khachhang (tenkhachhang,diachi,sdt,email,tentaikhoan,mathau,trangthai) VALUES('$tenkhachhang','$diachi','$sdt','$email','$tentaikhoan',' $mathau','$trangthai')";
         if (mysqli_query($this->connect(), $sql)) {
-            return true;
-        } else return false;
+            echo "Success";
+        } else {
+            echo "Error" . $this->connect()->error;
+        }
     }
 }

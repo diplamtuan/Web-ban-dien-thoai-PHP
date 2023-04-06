@@ -1,8 +1,8 @@
 <?php
 class CustommerCtrl extends Custommer
 {
-    public function updateCustommerProfileCtrl(CustommerModel $cust)
+    public function insertCustommer1()
     {
-        return $this->updateCustommerProfile($cust);
+        $this->insertCustommer("a", "a", "a", "a", "a", "a", "a");
     }
 }

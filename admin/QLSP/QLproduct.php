@@ -21,15 +21,16 @@
       color: white;
       padding: 5px 15px;
       cursor: pointer;
-      
+
     }
+
     select#brand {
-    height: 30px;
-    width: 150px;
-    text-align: center;
-    background-color: aquamarine;
-    margin-bottom: 20px;
-}
+      height: 30px;
+      width: 150px;
+      text-align: center;
+      background-color: aquamarine;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
@@ -44,21 +45,22 @@
     </header>
     <div id='catelogy_data'></div>
     <div id='content'></div>
-    <div id='test'></div>
+    <div id='test'>
+    </div>
 
   </div>
 
   <?php
   include('./modal_dialog.php');
   ?>
-  
+
 </body>
 <script>
   $(document).ready(function() {
     load_data();
     load_brand();
     deleteproduct();
-   
+
     $(document).on('click', '.pagination_link', function() {
       var page = $(this).attr("id");
       var id_brand = $('#brand').val();
@@ -67,7 +69,7 @@
     });
 
     function load_data(id_brand = "", page = 1, input = '') {
-    
+
       $.ajax({
         url: './dataProduct.php',
         method: "POST",
@@ -76,7 +78,7 @@
           page: page,
           input: input
         },
-        success: function(data) { 
+        success: function(data) {
           $('#content').html(data);
         }
       });
@@ -112,102 +114,142 @@
     }
     // delete product
 
-      function deleteproduct(){
-    $(document).on('click','.del_product', function () {
-      var page = $('.pagination_link.current').attr('id');
-      var id = $(this).data('id_product');
-      var id_brand = $('#brand').val();
-     
-      $.ajax({
-        url : './deleteproduct.php',
-        method:'POST',
-        data:{
-          id_product:id
-        },
-        success:function(data){
-          if (data.trim() == 'success') {
-                alert('Delete success');
-                
-                load_data(id_brand, page, '');
-            } else {
-                alert('Delete failed');
-            }
-        }
-      });
-        });
-      }
+    function deleteproduct() {
+      $(document).on('click', '.del_product', function() {
+        var page = $('.pagination_link.current').attr('id');
+        var id = $(this).data('id_product');
+        var id_brand = $('#brand').val();
 
-    // detail product
-    $('#staticBackdrop').on('show.bs.modal', function(event) {
-      var button = $(event.relatedTarget);
-      var ID_dt = button.data('id');
-      // var a =$('input[name="idthuonghieu"]').val();
-      // alert(a);
-          $.ajax({
-      url: './get_data.php',
-      method: 'POST', 
-      data: { id: ID_dt },
-      dataType: 'json',
-      success: function(response) {
-    // Xử lý kết quả trả về từ server
-    // Đưa dữ liệu vào các input tương ứng
-    $('input[name="id_dt"]').val(response.ID_dienthoai);
-    $('select[name="idthuonghieu"]').val(response.ID_thuonghieu);
-    $('select[name="idncc"]').val(response.ID_ncc);
-    $('input[name="tendt"]').val(response.Tendt);
-    $('#image').attr('src','../../assets/img/'+ response.Anhdt);
-    $('input[name="anhdt"]').val(response.Anhdt);
-    $('textarea[name="mota"]').val(response.Motadt);
-    $('input[name="gia"]').val(response.Giadt);
-    $('input[name="soluong"]').val(response.Soluong);
-    $('input[name="luotxem"]').val(response.Luotxem);
-    $('select[name="id_km"]').val(response.ID_km);
-    $('select[name="id_bh"]').val(response.ID_baohanh);
-  },
-  error: function(jqXHR, textStatus, errorThrown) {
-    console.log(textStatus, errorThrown);
-  }
-});
-      Editproduct();
-    });
-
-    function Editproduct() {
-      $('#button_edit').on('click', function() {
-        var ID_dienthoai = $('#id_dt').val();
-        var id_thuonghieu = $('#idthuonghieu').val();
-        var id_nhacungcap = $('#idncc').val();
-        var Tendt = $('#tendt').val();
-        var Anhdt = $('#anhdt').val();
-        var Mota = $('#mota').val();
-        var Gia = $('#gia').val();
-        var soluong = $('#soluong').val();
-        var luotxem = $('#luotxem').val();
-        var id_baohanh = $('#idbh').val();
-        var id_km = $('#idkm').val();
-        // alert(id_thuonghieu);
         $.ajax({
-          url: './insertproduct.php',
+          url: './deleteproduct.php',
           method: 'POST',
           data: {
-            ID_dienthoai: ID_dienthoai,
-            id_thuonghieu: id_thuonghieu,
-            id_nhacungcap: id_nhacungcap,
-            Tendt: Tendt,
-            Anhdt: Anhdt,
-            Mota: Mota,
-            Gia: Gia,
-            soluong: soluong,
-            luotxem: luotxem,
-            id_baohanh: id_baohanh,
-            id_km: id_km
+            id_product: id
           },
           success: function(data) {
-            // alert('Insert Thanhcong');
-            $('#test').html(data);
+            if (data.trim() == 'success') {
+              alert('Delete success');
+
+              load_data(id_brand, page, '');
+            } else {
+              alert('Delete failed');
+            }
           }
         });
       });
     }
-  });
 
+    // detail product
+    $('#modal_dialog').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var action = button.data('action');
+      var ID_dt = button.data('id');
+
+      if (action == 'Edit') {
+        Reardproduct(button, ID_dt);
+        $("#button_insert").hide();
+        $("#button_edit").show();
+        $('#button_edit').off('click').on('click', function() {
+
+          var key = $(this).data('key');
+          Dataproduct(key);
+
+        });
+      } else if (action == 'AddProduct') {
+        $('input[type="text"], textarea,image').val('');
+        $('#image').attr('src', '');
+        $("#button_edit").hide();
+        $("#button_insert").show();
+        $('#button_insert').off('click').on('click', function() {
+          var key = $(this).data('key');
+          Dataproduct(key);
+        });
+      }
+
+    });
+
+
+
+    function Reardproduct(button, ID_dt) {
+      var page = $('.pagination_link.current').attr('id');
+      var id_brand = $('#brand').val();
+      $.ajax({
+        url: './get_data.php',
+        method: 'POST',
+        data: {
+          id: ID_dt
+        },
+        dataType: 'json',
+        success: function(response) {
+          // Xử lý kết quả trả về từ server
+          // Đưa dữ liệu vào các input tương ứng
+          $('input[name="id_dt"]').val(response.ID_dienthoai);
+          $('select[name="idthuonghieu"]').val(response.ID_thuonghieu);
+          $('select[name="idncc"]').val(response.ID_ncc);
+          $('input[name="tendt"]').val(response.Tendt);
+          $('#image').attr('src', '../../assets/img/' + response.Anhdt);
+          $('input[name="anhdt"]').val(response.Anhdt);
+          $('textarea[name="mota"]').val(response.Motadt);
+          $('input[name="gia"]').val(response.Giadt);
+          $('input[name="soluong"]').val(response.Soluong);
+          $('input[name="luotxem"]').val(response.Luotxem);
+          $('select[name="id_km"]').val(response.ID_km);
+          $('select[name="id_bh"]').val(response.ID_baohanh);
+
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(textStatus, errorThrown);
+        }
+      });
+    }
+
+    function Dataproduct(key) {
+
+      var page = $('.pagination_link.current').attr('id');
+      var id_brand = $('#brand').val();
+      // $('#button_data').on('click', function() {
+
+      var ID_dienthoai = $('#id_dt').val();
+      var id_thuonghieu = $('#idthuonghieu').val();
+      var id_nhacungcap = $('#idncc').val();
+      var Tendt = $('#tendt').val();
+      var Anhdt = $('#anhdt').val();
+      var Mota = $('#mota').val();
+      var Gia = $('#gia').val();
+      var soluong = $('#soluong').val();
+      var luotxem = $('#luotxem').val();
+      var id_baohanh = $('#idbh').val();
+      var id_km = $('#idkm').val();
+      $.ajax({
+        url: './insertproduct.php',
+        method: 'POST',
+        data: {
+          key: key,
+          ID_dienthoai: ID_dienthoai,
+          id_thuonghieu: id_thuonghieu,
+          id_nhacungcap: id_nhacungcap,
+          Tendt: Tendt,
+          Anhdt: Anhdt,
+          Mota: Mota,
+          Gia: Gia,
+          soluong: soluong,
+          luotxem: luotxem,
+          id_baohanh: id_baohanh,
+          id_km: id_km
+        },
+        success: function(data) {
+
+          if (data.trim() == 'Edit success' || data.trim() == 'Insert success') {
+            load_data(id_brand, page, '');
+            alert(data.trim());
+             
+            $('#modal_dialog').modal('hide');
+          } else {
+            alert('Edit failed');
+          }
+        }
+      });
+    }
+  });
 </script>

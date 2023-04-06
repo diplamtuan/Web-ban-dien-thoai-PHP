@@ -38,7 +38,6 @@ class Cart extends Db
         $id_khuyenmai = $cart->getID_khuyenmai();
         $id_baohanh = $cart->getID_baohanh();
         $giasaukm = $cart->getGiasaukm();
-        echo $id_donhang . "<br>";
         $sql = "INSERT into chitietdonhang(id_donhangnew,id_dienthoai,soluong,gia,ID_khuyenmai,ID_baohanh,Giasaukm) 
         VALUES('$id_donhang','$id_dienthoai','$soluong','$gia','$id_khuyenmai','$id_baohanh','$giasaukm')";
         if (mysqli_query($this->connect(), $sql)) {
@@ -48,5 +47,46 @@ class Cart extends Db
             echo "Error";
             return false;
         }
+    }
+
+    protected function getOrderByIdCustomer($id_cust)
+    {
+        $sql = "SELECT * from  donhang where donhang.ID_Khachhang ='$id_cust'";
+        $result = mysqli_query($this->connect(), $sql);
+        $data = [];
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    protected function getOrderDetailByIdOrder($id_order)
+    {
+        $sql = "SELECT dienthoai.Anhdt,dienthoai.Tendt,chitietdonhang.soluong,chitietdonhang.gia,chitietdonhang.Giasaukm,donhang.Tonggiatien,donhang.Ngaydathang,dienthoai.id_dienthoai
+        from chitietdonhang,dienthoai,donhang
+        where chitietdonhang.id_donhangnew = '$id_order' and dienthoai.ID_dienthoai = chitietdonhang.id_dienthoai and chitietdonhang.id_donhangnew = donhang.id_donhang";
+        $result = mysqli_query($this->connect(), $sql);
+        $data = [];
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    protected function updateCancelStatusOrder($id_order)
+    {
+        $sql = "UPDATE donhang SET Trangthaidonhang = 'Đã hủy' where id_donhang = '$id_order'";
+        $result = mysqli_query($this->connect(), $sql);
+        if ($result) {
+            return true;
+        } else return false;
     }
 }

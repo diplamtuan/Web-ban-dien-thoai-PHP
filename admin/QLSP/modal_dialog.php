@@ -9,28 +9,27 @@ $sanpham = new sanphamview();
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="post" id="insert_product">
         <div class="form-group">
-            <label for="anhdt">Anhdt</label><br><br>
-            <img src="" alt="Nodata" id="image" width="250px" height="250px"><button type="button" style="margin-left:20px;">ImageChoose</button>
-            </br></br>
-            <input class="form-control" type="text" name="anhdt" id="anhdt" placeholder="anhdt">
+        <img id="image_preview" src="" alt=""> 
+            <input type="file" id="file_upload" accept=".jpg, .png" name="displayImage" hidden onchange="imagePreview(this)">
+          <label for="file_upload" class="label_upload"><b>Choose image</b></label>
           </div>
           <div class="form-group">
-            <label for="id_dt">ID_dienthoai</label>
-            <input class="form-control" type="text" name="id_dt" id="id_dt" value='' placeholder="ID_dienthoai">
+            <label for="id_dt" id="id">ID_dienthoai</label>
+            <input class="form-control" type="text" name="id_dt" id="id_dt" value='<?php echo $id?>' placeholder="ID_dienthoai">
           </div>
           <div class="form-group">
-            <label for="idthuonghieu">ID thương hiệu</label></br>
+            <label for="idthuonghieu">Tên thương hiệu</label></br>
             <select id="idthuonghieu" name="idthuonghieu">
+            <option value="">--option--</option>
               <?php
             
               $result = $sanpham->getCartegoryView();
-              foreach ($result as $data) {
+              foreach ($result as $data) { 
                 $id_th = $data['id_thuonghieu'];
                 $tenTH = $data['tenthuonghieu'];
               ?>
@@ -41,8 +40,9 @@ $sanpham = new sanphamview();
             </select>
           </div>
           <div class="form-group">
-            <label for="idncc">ID nhà cung cấp</label></br>
+            <label for="idncc">Tên nhà cung cấp</label></br>
             <select id="idncc" name="idncc">
+            <option value="">--option--</option>
             <?php
               $result = $sanpham->getNhacungcapView();
               foreach ($result as $data) {
@@ -56,28 +56,29 @@ $sanpham = new sanphamview();
             </select>
           </div>
           <div class="form-group">
-            <label for="tendt">Tên dt</label>
+            <label for="tendt">Tên điện thoại</label>
             <input class="form-control" type="text" name="tendt" id="tendt" placeholder="tendt">
           </div>
           
           <div class="form-group">
-            <label for="mota">Mota</label>
+            <label for="mota">Mô tả </label>
             <textarea class="form-control" type="text" name="mota" id="mota" rows="3"></textarea>
           </div>
           <div class="form-group">
-            <label for="gia">Gia</label>
+            <label for="gia">Giá</label>
             <input class="form-control" type="text" name="gia" id="gia" placeholder="gia">
           </div>
           <div class="form-group">
-            <label for="soluong">soluong</label>
+            <label for="soluong">Số lượng</label>
             <input class="form-control" type="text" id="soluong" name="soluong">
           </div>
           <div class="form-group">
-            <label for="luotxem">luotxem</label>
+            <label for="luotxem">Lượt xem</label>
             <input class="form-control" type="text" id="luotxem" name="luotxem">
             <div class="form-group">
-              <label for="idkm">id km</label></br>
+              <label for="idkm">Tên khuyến mãi</label></br>
               <select id="idkm" name="idkm">
+              <option value="">--option--</option>
               <?php
               $result = $sanpham->getKhuyenmaiView();
               foreach ($result as $data) {
@@ -89,9 +90,11 @@ $sanpham = new sanphamview();
               }
               ?>
               </select>
+            </div>
               <div class="form-group">
-                <label for="idbh">id bh</label></br>
+                <label for="idbh">Tên bảo hành</label></br>
                 <select id="idbh" name="idbh">
+                <option value="">--option--</option>
                 <?php
                 $result = $sanpham->getBaohanhView();
                  foreach ($result as $data) {

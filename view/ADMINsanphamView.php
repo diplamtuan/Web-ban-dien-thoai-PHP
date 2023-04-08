@@ -129,4 +129,11 @@ public function getInforSPProductView($input,$offset, $limit_per_pages){
         }
         return $result;
     }
+    public function getInsertProduct($ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh){
+        $result = $this->InsertProduct($ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh);
+        if($result == false) {
+            return false;
+        }
+        return $result;
+    }
 }

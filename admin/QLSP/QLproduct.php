@@ -31,6 +31,13 @@
       background-color: aquamarine;
       margin-bottom: 20px;
     }
+
+    img {
+      height: 250px;
+      width: 250px;
+      object-fit: cover;
+      background-color: blueviolet;
+    }
   </style>
 </head>
 
@@ -56,6 +63,14 @@
 
 </body>
 <script>
+  function imagePreview(subject) {
+    let file = subject.files[0];
+    let url = URL.createObjectURL(file);
+    let fileName = file.name;
+    // $("#image_preview").attr('src', fileName,url);
+    $("#image_preview").attr("src", url).attr("value", file.name);
+
+  }
   $(document).ready(function() {
     load_data();
     load_brand();
@@ -138,15 +153,18 @@
         });
       });
     }
-
+    
     // detail product
     $('#modal_dialog').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
       var action = button.data('action');
       var ID_dt = button.data('id');
+      $(this).find('span.error').remove(); // Xóa các thẻ span có class error
+     $('#tendt').css('background-color', 'transparent'); // Thiết lập màu nền về giá trị mặc định
 
       if (action == 'Edit') {
         Reardproduct(button, ID_dt);
+        $('#id,#id_dt').show();
         $("#button_insert").hide();
         $("#button_edit").show();
         $('#button_edit').off('click').on('click', function() {
@@ -156,8 +174,10 @@
 
         });
       } else if (action == 'AddProduct') {
-        $('input[type="text"], textarea,image').val('');
-        $('#image').attr('src', '');
+        $('input[type="text"], textarea,select').val('');
+        
+        $('#image_preview').attr('src', '').attr('value','');
+        $('#id,#id_dt').hide();
         $("#button_edit").hide();
         $("#button_insert").show();
         $('#button_insert').off('click').on('click', function() {
@@ -167,8 +187,6 @@
       }
 
     });
-
-
 
     function Reardproduct(button, ID_dt) {
       var page = $('.pagination_link.current').attr('id');
@@ -187,14 +205,13 @@
           $('select[name="idthuonghieu"]').val(response.ID_thuonghieu);
           $('select[name="idncc"]').val(response.ID_ncc);
           $('input[name="tendt"]').val(response.Tendt);
-          $('#image').attr('src', '../../assets/img/' + response.Anhdt);
-          $('input[name="anhdt"]').val(response.Anhdt);
+          $('#image_preview').attr('src', '../../assets/img/' + response.Anhdt).attr('value', response.Anhdt);
           $('textarea[name="mota"]').val(response.Motadt);
           $('input[name="gia"]').val(response.Giadt);
           $('input[name="soluong"]').val(response.Soluong);
           $('input[name="luotxem"]').val(response.Luotxem);
-          $('select[name="id_km"]').val(response.ID_km);
-          $('select[name="id_bh"]').val(response.ID_baohanh);
+          $('select[name="idkm"]').val(response.id_km);
+          $('select[name="idbh"]').val(response.id_bh);
 
 
         },
@@ -204,17 +221,34 @@
       });
     }
 
-    function Dataproduct(key) {
-
+    function Dataproduct(key, fileName) {
       var page = $('.pagination_link.current').attr('id');
       var id_brand = $('#brand').val();
-      // $('#button_data').on('click', function() {
-
       var ID_dienthoai = $('#id_dt').val();
       var id_thuonghieu = $('#idthuonghieu').val();
       var id_nhacungcap = $('#idncc').val();
-      var Tendt = $('#tendt').val();
-      var Anhdt = $('#anhdt').val();
+      regex = /^[0-9]+$/;
+      if ($('#tendt').val() == '' || !regex.test($('#tendt').val())) {
+        if ($('#tendt').next('span.error').length == 0) {
+          // nếu chưa tồn tại, thêm thẻ <span> mới và đưa trỏ chuột vào trường
+          $('#tendt').after('<span class="error">Vui lòng nhập tên đối tác</span>');
+          $('#tendt').focus();
+          $('#tendt').css('background-color', 'yellow');
+        } else {
+          // nếu đã tồn tại, chỉ cần cập nhật nội dung thẻ <span>
+          $('#tendt').next('span.error').html('Vui lòng nhập tên đối tác');
+        }
+      } else {
+        var Tendt = $('#tendt').val();
+      }
+      $('#tendt').on('input', function() {
+        if ($('#tendt').next('span.error').length) {
+          $('#tendt').next('span.error').remove();
+          $('#tendt').css('background-color', 'transparent');
+        }
+      });
+
+      var Anhdt = $('#image_preview').attr('value');
       var Mota = $('#mota').val();
       var Gia = $('#gia').val();
       var soluong = $('#soluong').val();
@@ -243,10 +277,8 @@
           if (data.trim() == 'Edit success' || data.trim() == 'Insert success') {
             load_data(id_brand, page, '');
             alert(data.trim());
-             
+
             $('#modal_dialog').modal('hide');
-          } else {
-            alert('Edit failed');
           }
         }
       });

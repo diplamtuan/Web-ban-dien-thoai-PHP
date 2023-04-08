@@ -28,14 +28,21 @@ if(isset($_POST['key']) && isset($_POST['ID_dienthoai']) &&  isset($_POST['id_th
   
   if($key == 'edit'){
     $sanpham->getUpdataProduct($id_product,$ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh);
-              echo 'Edit success';
-         
+             
+    echo 'Edit success';    
   }
   else if( $key == 'insert'){
-    $sql = "INSERT INTO `dienthoai` (`ID_dienthoai`, `ID_thuonghieu`, `ID_Nhacungcap`, `Tendt`, `Anhdt`, `Motadt`, `Giadt`, `Soluong`, `Luotxem`, `ID_khuyenmai`, `ID_baohanh`) VALUES (NULL, '3', '4', 'huawey ', 'xxx', 'r', 'r', '25', '25', '1', '1')";
-              
-       $row= mysqli_query($conn,$sql);
-       echo 'Insert success';
+      $sanpham->getInsertProduct($ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh);
+      $file_name = basename($_FILES['Anhdt']['name']);
+
+      // Tạo đường dẫn đến thư mục đích
+      $target_path = "../../assets/img/" . $file_name;
+      
+      // Di chuyển tệp tin đến thư mục đích
+      move_uploaded_file($_FILES['Anhdt']['tmp_name'], $target_path);
+     
+        echo 'Insert success';
+   
   }else{
       echo 'failure';
   }

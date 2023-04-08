@@ -40,4 +40,9 @@ class ProductView extends Product
         }
         return false;
     }
+
+    public function getProductsAdminView()
+    {
+        return $this->getProductsAdmin();
+    }
 }

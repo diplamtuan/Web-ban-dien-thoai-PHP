@@ -8,4 +8,11 @@ class ProductCtrl extends Product
         }
         return false;
     }
+
+    public function insertProductCtrl(ProductModel $product)
+    {
+        if ($this->insertProduct($product)) {
+            return true;
+        } else return false;
+    }
 }

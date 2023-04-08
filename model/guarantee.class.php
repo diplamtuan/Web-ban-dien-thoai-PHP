@@ -1,11 +1,11 @@
 <?php
-class Brand extends Db
+class Guarantee extends Db
 {
-    protected function getAllBrands()
+    protected function getGuaranteeAll()
     {
-        $sql = "SELECT * FROM thuonghieu";
-        $result = mysqli_query($this->connect(), $sql);
+        $sql = "SELECT * from baohanh";
         $data = [];
+        $result = mysqli_query($this->connect(), $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
                 $data[] = $row;

@@ -1,11 +1,11 @@
 <?php
-class Brand extends Db
+class Suppli extends Db
 {
-    protected function getAllBrands()
+    protected function getSuppliAll()
     {
-        $sql = "SELECT * FROM thuonghieu";
-        $result = mysqli_query($this->connect(), $sql);
         $data = [];
+        $sql = "SELECT * from nhacungcap";
+        $result = mysqli_query($this->connect(), $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
                 $data[] = $row;

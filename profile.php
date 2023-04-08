@@ -4,8 +4,8 @@ include 'header.php';
 
 <section class="vh-100" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-10 mb-6 mb-lg-0 profile-wraper">
+        <div class="row d-flex justify-content-center h-100">
+            <div class="col col-lg-10 mb-6 mb-lg-0 profile-wraper h-100">
 
             </div>
         </div>

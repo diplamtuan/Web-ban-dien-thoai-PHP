@@ -1,9 +1,11 @@
 <?php
 session_start();
-include '../model/db.class.php';
-include '../model/custommer.class.php';
-include '../view/custommerView.php';
-include '../controller/custommerCtrl.php';
+include '../classes/db.class.php';
+include '../classes/custommer.class.php';
+include '../classes/custommerView.class.php';
+include '../classes/custommerCtrl.class.php';
+
+
 
 if (isset($_POST['loadProfile'])) {
     $id_cust = $_SESSION['auth_user']['id_khachhang'];

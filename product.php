@@ -1,10 +1,6 @@
 <?php
 session_start();
 include 'header.php';
-include 'model/db.class.php';
-include 'model/brand.class.php';
-include 'view/brandView.php';
-
 
 ?>
 <!-- Content -->
@@ -274,7 +270,7 @@ include 'view/brandView.php';
         if (isset($_GET['id'])) {
         ?>
             const queryString = window.location.search;
-            const params = new URLSearchParam(queryString);
+            const params = new URLSearchParams(queryString);
             var id = params.get('id');
             loadPage(1, id);
             loadActiveBrand(id);

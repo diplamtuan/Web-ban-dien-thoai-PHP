@@ -11,8 +11,6 @@ class Brand extends Db
                 $data[] = $row;
             }
             return $data;
-        }
-        $this->close();
-        return false;
+        } else return false;
     }
 }

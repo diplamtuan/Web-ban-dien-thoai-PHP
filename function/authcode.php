@@ -1,9 +1,10 @@
 <?php
 session_start();
 include '../DB/dbconnect.php';
-include '../model/db.class.php';
-include '../model/account.class.php';
-include '../controller/accountCtrl.php';
+include '../classes/db.class.php';
+include '../classes/account.class.php';
+include '../classes/accountCtrl.class.php';
+
 if (isset($_POST['register'])) {
     $account = new AccountModel();
     $accountCtrl = new AccountCtrl();

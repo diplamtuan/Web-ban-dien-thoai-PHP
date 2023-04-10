@@ -1,7 +1,9 @@
 <?php
-include '../model/db.class.php';
-include '../model/brand.class.php';
-include '../view/brandView.php';
+include '../classes/db.class.php';
+include '../classes/brand.class.php';
+include '../classes/brandView.class.php';
+
+
 $allBrand = new BrandView();
 $result = $allBrand->getAllBrandsView();
 $output = "";

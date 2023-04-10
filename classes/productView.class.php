@@ -40,4 +40,13 @@ class ProductView extends Product
         }
         return false;
     }
+
+    public function getProductsAdminView()
+    {
+        return $this->getProductsAdmin();
+    }
+    public function getProductsAdminByIdView($id)
+    {
+        return $this->getProductsAdminById($id);
+    }
 }

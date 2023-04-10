@@ -257,10 +257,12 @@ $(document).ready(function () {
         var mota = $(".product-edit-form .input-desc").val();
         var img = $(".product-edit-form .file-input").val();
         var inputCheckActive = $(".product-edit-form .form-check-input:checked");
+        console.log(inputCheckActive);
         if (inputCheckActive) {
             var trangthai = 'Active';
         } else {
             var trangthai = 'Not Active';
+            console.log('Not active');
         }
         if (checkValue(tendt)) {
             if (checkValue(img)) {

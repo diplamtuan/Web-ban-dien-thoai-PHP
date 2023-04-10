@@ -25,9 +25,4 @@ class ProductCtrl extends Product
     {
         return $this->updateProduct($product);
     }
-
-    public function getProductsAdminByIdView($id)
-    {
-        return $this->getProductsAdminById($id);
-    }
 }

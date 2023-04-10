@@ -7,6 +7,7 @@ include '../classes/custommerCtrl.class.php';
 
 
 
+
 if (isset($_POST['loadProfile'])) {
     $id_cust = $_SESSION['auth_user']['id_khachhang'];
     $custView = new CustommerView();

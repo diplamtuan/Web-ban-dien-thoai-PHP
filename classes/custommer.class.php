@@ -1,6 +1,6 @@
 <?php
 $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-if (strpos($url, 'includes') !== false) {
+if (strpos($url, 'function') !== false) {
     $path = "../DTO/";
 } else {
     $path = "DTO/";

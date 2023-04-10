@@ -245,4 +245,14 @@ protected function getCartegory(){
             return false;
         }
     }
+    protected function InsertProduct($ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh){
+        $sql = "INSERT INTO `dienthoai` (`ID_thuonghieu`, `ID_Nhacungcap`, `Tendt`, `Anhdt`, `Motadt`, `Giadt`, `Soluong`, `Luotxem`, `ID_khuyenmai`, `ID_baohanh`) 
+        VALUES ($ID_th, $ID_ncc,'$Tendt','$Anhdt','$Mota',$Gia,$soluong,$luotxem,$ID_km,$ID_bh)";
+        $result = mysqli_query($this->connect(),$sql);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -15,4 +15,19 @@ class ProductCtrl extends Product
             return true;
         } else return false;
     }
+
+    public function deleteProductCtrl($id)
+    {
+        return $this->deleteProduct($id);
+    }
+
+    public function updateProductCtrl(ProductModel $product)
+    {
+        return $this->updateProduct($product);
+    }
+
+    public function getProductsAdminByIdView($id)
+    {
+        return $this->getProductsAdminById($id);
+    }
 }

@@ -1,5 +1,11 @@
 <?php
-include '../DTO/AccountModel.php';
+$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+if (strpos($url, 'function') !== false) {
+    $path = "../DTO/";
+} else {
+    $path = "DTO/";
+}
+include $path . 'AccountModel.php';
 class Account extends Db
 {
     protected function insertAccount(AccountModel $account)

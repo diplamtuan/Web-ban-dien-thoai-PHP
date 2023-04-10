@@ -10,8 +10,18 @@ class ProductModel
     private $id_nhacungcap;
     private $id_khuyenmai;
     private $id_baohanh;
+    private $trangthai;
+    private $ID_dienthoai;
 
     //get
+    public function getId_dienthoai()
+    {
+        return $this->ID_dienthoai;
+    }
+    public function getTrangthai()
+    {
+        return $this->trangthai;
+    }
     public function getTendt()
     {
         return $this->tendt;
@@ -49,6 +59,14 @@ class ProductModel
         return $this->id_baohanh;
     }
     //    set
+    public function setId_dienthoai($id_dienthoai)
+    {
+        $this->ID_dienthoai = $id_dienthoai;
+    }
+    public function setTrangthai($trangthai)
+    {
+        $this->trangthai = $trangthai;
+    }
     public function setTendt($tendt)
     {
         $this->tendt = $tendt;

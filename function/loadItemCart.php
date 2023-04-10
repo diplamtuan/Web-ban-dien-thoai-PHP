@@ -1,11 +1,14 @@
 <?php
 session_start();
-include '../model/db.class.php';
-include '../model/product.class.php';
-include '../view/productView.php';
-include '../model/cart.class.php';
-include '../controller/cartCtrl.php';
-include '../controller/productCtrl.php';
+include '../classes/db.class.php';
+include '../classes/product.class.php';
+include '../classes/productView.class.php';
+include '../classes/productCtrl.class.php';
+include '../classes/cart.class.php';
+include '../classes/cartView.class.php';
+include '../classes/cartCtrl.class.php';
+
+
 
 if (isset($_POST['user_id']) && isset($_POST['product_id'])) {
     $user_id = $_POST['user_id'];

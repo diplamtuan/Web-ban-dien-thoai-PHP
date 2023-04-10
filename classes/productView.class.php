@@ -45,4 +45,8 @@ class ProductView extends Product
     {
         return $this->getProductsAdmin();
     }
+    public function getProductsAdminByIdView($id)
+    {
+        return $this->getProductsAdminById($id);
+    }
 }

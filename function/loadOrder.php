@@ -1,12 +1,13 @@
 <?php
 session_start();
-include '../model/db.class.php';
-include '../model/cart.class.php';
-include '../model/product.class.php';
-include '../view/cartView.php';
-include '../view/productView.php';
-include '../controller/cartCtrl.php';
-include '../controller/productCtrl.php';
+include '../classes/db.class.php';
+include '../classes/cart.class.php';
+include '../classes/cartView.class.php';
+include '../classes/cartCtrl.class.php';
+include '../classes/product.class.php';
+include '../classes/productView.class.php';
+include '../classes/productCtrl.class.php';
+
 
 if (isset($_POST['loadOrder'])) {
     $id_custommer =  $_SESSION['auth_user']['id_khachhang'];

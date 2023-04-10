@@ -1,7 +1,8 @@
 <?php
-include '../model/db.class.php';
-include '../model/product.class.php';
-include '../view/productView.php';
+include '../classes/db.class.php';
+include '../classes/product.class.php';
+include '../classes/productView.class.php';
+
 
 $ProductView = new ProductView();
 $output = "";

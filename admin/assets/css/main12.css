@@ -491,7 +491,8 @@ main .card .label {
     width: 50%;
 }
 
-.product-add-form .modal-dialog {
+.product-add-form .modal-dialog,
+.product-edit-form .modal-dialog {
     max-width: 100%;
     width: 50vw;
     height: 50vh;
@@ -531,4 +532,13 @@ main .card .label {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+}
+
+/* Hover delete btn */
+.control-wrap .delete {
+    color: red;
+}
+
+.control-wrap .delete:hover {
+    color: black;
 }

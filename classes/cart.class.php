@@ -1,6 +1,12 @@
 <?php
-include '../DTO/CartModel.php';
-include '../DTO/CartDetailModel.php';
+$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+if (strpos($url, 'function') !== false) {
+    $path = "../DTO/";
+} else {
+    $path = "DTO/";
+}
+include  $path . 'CartModel.php';
+include  $path . 'CartDetailModel.php';
 
 class Cart extends Db
 {

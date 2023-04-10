@@ -1,5 +1,11 @@
 <?php
-include '../DTO/CustommerModel.php';
+$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+if (strpos($url, 'includes') !== false) {
+    $path = "../DTO/";
+} else {
+    $path = "DTO/";
+}
+include  $path . 'CustommerModel.php';
 class Custommer extends Db
 {
     protected function getCustommerById($id)

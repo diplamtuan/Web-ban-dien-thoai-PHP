@@ -5,7 +5,7 @@ echo "<div class='d-flex justify-content-around align-items-center control-wrap 
         <input type='text' placeholder='Search...'>
         <i class='bx bx-search-alt-2 icon'></i>
 </div>
-<button class='blob-btn btn-add-product' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+<button class='blob-btn btn-add-product' data-bs-toggle='modal' data-bs-target='#exampleModalAdd'>
     Thêm sản phẩm
     <span class='blob-btn__inner'>
         <span class='blob-btn__blobs'>

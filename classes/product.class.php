@@ -1,10 +1,16 @@
 <?php
-include '../DTO/ProductModel.php';
+$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+if (strpos($url, 'function') !== false) {
+    $path = "../DTO/";
+} else {
+    $path = "DTO/";
+}
+include $path . 'ProductModel.php';
 class Product extends Db
 {
     protected function getProducts()
     {
-        $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,thuonghieu.tenthuonghieu, dienthoai.ID_dienthoai,dienthoai.ID_thuonghieu FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu and dienthoai.soluong <>'0'";
+        $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,thuonghieu.tenthuonghieu, dienthoai.ID_dienthoai,dienthoai.ID_thuonghieu FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu and dienthoai.soluong <>'0' and dienthoai.trangthai='Active'";
         $result = mysqli_query($this->connect(), $sql);
         $resultCheck = mysqli_num_rows($result);
         $data = [];
@@ -23,9 +29,9 @@ class Product extends Db
     {
 
         if ($id_brand == 0) {
-            $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,thuonghieu.tenthuonghieu,dienthoai.ID_dienthoai FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu and dienthoai.soluong <>'0' LIMIT {$offset},{$limit_per_page}";
+            $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,thuonghieu.tenthuonghieu,dienthoai.ID_dienthoai FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu and dienthoai.soluong <>'0' and dienthoai.trangthai='Active' LIMIT {$offset},{$limit_per_page}";
         } else {
-            $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,thuonghieu.tenthuonghieu,dienthoai.ID_dienthoai FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu ='{$id_brand}' AND dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu and dienthoai.soluong <>'0' LIMIT {$offset},{$limit_per_page}";
+            $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,thuonghieu.tenthuonghieu,dienthoai.ID_dienthoai FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu ='{$id_brand}' AND dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu and dienthoai.soluong <>'0' and dienthoai.trangthai='Active' LIMIT {$offset},{$limit_per_page}";
         }
         $result = mysqli_query($this->connect(), $sql);
         $resultCheck = mysqli_num_rows($result);
@@ -40,7 +46,7 @@ class Product extends Db
 
     protected function getProductsByBrands($id_brand)
     {
-        $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,dienthoai.ID_dienthoai FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu AND dienthoai.ID_thuonghieu ='{$id_brand}' and dienthoai.soluong <>'0'";
+        $sql = "SELECT distinct dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,dienthoai.ID_dienthoai FROM dienthoai,thuonghieu WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu AND dienthoai.ID_thuonghieu ='{$id_brand}' and dienthoai.soluong <>'0' and dienthoai.trangthai='Active'";
         $result = mysqli_query($this->connect(), $sql);
         $resultCheck = mysqli_num_rows($result);
         $data = [];
@@ -110,21 +116,50 @@ class Product extends Db
         $id_baohanh = $product->getid_baohanh();
         $luotxem = 0;
         $trangthai = 'Active';
-        echo "Day la model" . "<br>";
-        echo $tendt;
-        echo $anhdt;
-        echo $mota;
-        echo $giadt;
-        echo $soluong;
-        echo $id_thuonghieu;
-        echo $id_nhacungcap;
-        echo $id_khuyenmai;
-        echo $id_baohanh;
-        echo $luotxem;
-        echo $trangthai;
         $sql = "INSERT INTO dienthoai (Tendt,Anhdt,Motadt,Giadt,Soluong,ID_thuonghieu,ID_Nhacungcap,ID_khuyenmai,ID_baohanh,trangthai,luotxem) VALUES('$tendt','$anhdt','$mota','$giadt','$soluong','$id_thuonghieu','$id_nhacungcap','$id_khuyenmai','$id_baohanh','$trangthai','$luotxem')";
         if (mysqli_query($this->connect(), $sql)) {
             return true;
         } else  return false;
+    }
+
+    protected function deleteProduct($id_product)
+    {
+        $sql = "UPDATE dienthoai set trangthai='Not Active' where ID_dienthoai = '$id_product'";
+        if (mysqli_query($this->connect(), $sql)) {
+            return true;
+        } else return false;
+    }
+
+    protected function updateProduct(ProductModel $product)
+    {
+        $id_Dienthoai = $product->getId_dienthoai();
+        $tendt = $product->getTendt();
+        $anhdt = $product->getAnhdt();
+        $mota = $product->getMota();
+        $giadt = $product->getGiadt();
+        $soluong = $product->getSoluong();
+        $id_thuonghieu = $product->getid_thuonghieu();
+        $id_nhacungcap = $product->getid_nhacungcap();
+        $id_khuyenmai = $product->getid_khuyenmai();
+        $id_baohanh = $product->getid_baohanh();
+        $trangthai = $product->getTrangthai();
+        $sql = "UPDATE dienthoai set Tendt = '$tendt',Anhdt = '$anhdt',Motadt = '$mota',ID_thuonghieu ='$id_thuonghieu',ID_Nhacungcap='$id_nhacungcap',ID_khuyenmai='$id_khuyenmai',ID_baohanh='$id_baohanh',trangthai='$trangthai' where ID_dienthoai ='$id_Dienthoai'";
+        if (mysqli_query($this->connect(), $sql)) {
+            return true;
+        } else return false;
+    }
+
+    protected function getProductsAdminById($id)
+    {
+        $sql = "SELECT *
+        from dienthoai
+        where dienthoai.ID_dienthoai = '$id'";
+        $result = mysqli_query($this->connect(), $sql);
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck > 0) {
+            $row = mysqli_fetch_array($result);
+            return $row;
+        }
+        return false;
     }
 }

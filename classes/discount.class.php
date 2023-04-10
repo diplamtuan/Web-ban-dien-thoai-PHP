@@ -1,4 +1,5 @@
 <?php
+
 class Discount extends Db
 {
     protected function getDiscountAll()

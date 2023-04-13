@@ -1,12 +1,13 @@
 <?php
-echo "<div class='d-flex justify-content-around align-items-center product-control-wrap w-80 product-admin-wrap'>
-<h1 class='title'>Quản lí điện thoại</h1>
+echo "<div class='d-flex justify-content-around align-items-center order-control-wrap w-80 order-admin-wrap'>
+<h1 class='title'>Quản lí đơn hàng</h1>
  <div class='input-search'>
         <input type='text' placeholder='Search...'>
         <i class='bx bx-search-alt-2 icon'></i>
 </div>
-<button class='blob-btn btn-add-product' data-bs-toggle='modal' data-bs-target='#exampleModalAdd'>
-    Thêm sản phẩm
+<button class='blob-btn btn-order'>
+    Export file Excel
+    <i class='fa-solid fa-file-excel fs-3'></i>
     <span class='blob-btn__inner'>
         <span class='blob-btn__blobs'>
             <span class='blob-btn__blob'></span>
@@ -27,20 +28,23 @@ echo "<div class='d-flex justify-content-around align-items-center product-contr
                     <div class='card'>
                         <div class='card-body p-0'>
                             <div class='table-responsive' style='position: relative; height: 660px'>
-                                <table class='table table-striped mb-0'>
+                                <table class='table table-striped mb-0' id='table-order'>
                                     <thead style='background-color: #002d72;'>
                                         <tr class='fs-4'>
                                             <th scope='col'>STT</th>
-                                            <th scope='col'>Tên điện thoại</th>
-                                            <th scope='col'>Hình ảnh</th>
-                                            <th scope='col'>Thương hiệu</th>
-                                            <th scope='col'>Giá</th>
-                                            <th scope='col'>Số lượng</th>
-                                            <th scope='col'>Trạng thái</th>
-                                            <th scope='col'>Thao tác</th>
+                                            <th scope='col'>Mã ĐH</th>
+                                            <th scope='col'>Tên KH</th>
+                                            <th scope='col'>Tên NV</th>
+                                            <th scope='col'>Ngày đặt</th>
+                                            <th scope='col'>Ngày giao</th>
+                                            <th scope='col'>Ngày Cập Nhật</th>
+                                            <th scope='col'>Địa chỉ</th>
+                                            <th scope='col'>Tổng tiền</th>
+                                            <th scope='col'>Trạng thái ĐH</th>
+                                            <th scope='col'>Xử lí</th>
                                         </tr>
                                     </thead>
-                                    <tbody class='product-wrapp'>
+                                    <tbody class='order-wrapp'>
 
                                     </tbody>
                                 </table>
@@ -54,7 +58,7 @@ echo "<div class='d-flex justify-content-around align-items-center product-contr
 </div>
 </section>
 <div class='d-flex justify-content-center fs-3 mt-5 mx-0'>
-<nav class='pagination-product' aria-label='Page navigation example'>
+<nav class='pagination-order' aria-label='Page navigation example'>
    
 </nav>
 </div>";

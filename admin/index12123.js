@@ -22,23 +22,51 @@ $(document).ready(function () {
         // loadProduct();
         loadMainProduct();
     })
-
+    // Click order
+    $(".order").click(function () {
+        loadMainOrder();
+    })
+    // Render order
+    function loadMainOrder() {
+        $.ajax({
+            url: 'orderAdmin.php',
+            method: 'POST',
+            data: {
+                loadMainOrder: 1.
+            },
+            success: function (data) {
+                $("main").html(data);
+                loadOrder(1);
+            }
+        })
+    }
     // Render San pham
     function loadMainProduct() {
         $.ajax({
             url: 'productAdmin.php',
             method: 'POST',
             data: {
-                loadMainProduct: 1,
             },
             success: function (data) {
                 $("main").html(data);
                 loadProduct();
-                loadPaginationProduct();
+                loadPaginationProduct(1);
             }
         })
     }
-
+    function loadOrder(page_no) {
+        $.ajax({
+            url: '../function/loadOrderAdmin.php',
+            method: 'POST',
+            data: {
+                loadOrderAdmin: 1,
+                page_no: page_no,
+            },
+            success: function (data) {
+                $(".order-wrapp").html(data);
+            }
+        })
+    }
     function loadProduct(page_no) {
         $.ajax({
             url: '../function/loadProductAdmin.php',
@@ -52,7 +80,19 @@ $(document).ready(function () {
             }
         })
     }
-
+    function loadPaginationOrder(page_no) {
+        $.ajax({
+            url: '../function/loadProductAdmin.php',
+            method: 'POST',
+            data: {
+                loadPaginationOrder: 1,
+                page_no: page_no,
+            },
+            success: function (data) {
+                $(".pagination-order").html(data);
+            }
+        })
+    }
     function loadPaginationProduct(page_no) {
         $.ajax({
             url: '../function/loadProductAdmin.php',
@@ -227,7 +267,7 @@ $(document).ready(function () {
 
     })
     // Click vào nút delete
-    $(document).on('click', '.control-wrap .delete', function () {
+    $(document).on('click', '.product-admin .delete', function () {
         var pid = $(this).attr('pid');
         var result = confirm("Bạn xác nhận hủy sản phẩm ?");
         if (result) {
@@ -245,7 +285,7 @@ $(document).ready(function () {
         }
     })
     // Click vào nút edit
-    $(document).on('click', '.control-wrap .edit', function () {
+    $(document).on('click', '.product-admin .edit', function () {
         var pid = $(this).attr('pid');
         loadFormEditProduct(pid);
     })
@@ -256,9 +296,10 @@ $(document).ready(function () {
         var tendt = $(".product-edit-form .input-name").val();
         var mota = $(".product-edit-form .input-desc").val();
         var img = $(".product-edit-form .file-input").val();
-        var inputCheckActive = $(".product-edit-form .form-check-input:checked");
-        console.log(inputCheckActive);
-        if (inputCheckActive) {
+        const imgSrc = $(".product-edit-form #image-preview").attr('src');
+        const imgSrcName = imgSrc.split('/');
+        const imgName = imgSrcName[imgSrcName.length - 1];
+        if ($(".product-edit-form .form-check-input").is(":checked")) {
             var trangthai = 'Active';
         } else {
             var trangthai = 'Not Active';
@@ -306,12 +347,112 @@ $(document).ready(function () {
                     $(".product-add-form .input-desc").focus();
                 }
             } else {
-                alert("Mời chọn ảnh");
+                if (imgName) {
+                    if (checkValue(mota)) {
+                        var image_name = imgName;
+                        var gia = $(".product-edit-form .input-price").val();
+                        var quantity = $(".product-edit-form .input-quantity").val();
+                        var khuyenmai = $(".product-edit-form .input-khuyenmai").val();
+                        var baohanh = $(".product-edit-form .input-baohanh").val();
+                        var brand = $('.product-edit-form .input-brand').val();
+                        var suppli = $('.product-edit-form .input-suppli').val();
+                        var result = confirm("Bạn có chắc muốn sửa ?");
+                        if (result) {
+                            $.ajax({
+                                url: '../function/loadProductAdmin.php',
+                                method: 'POST',
+                                data: {
+                                    editProduct: 1,
+                                    tendt: tendt,
+                                    mota: mota,
+                                    image_name: image_name,
+                                    gia: gia,
+                                    quantity: quantity,
+                                    khuyenmai: khuyenmai,
+                                    baohanh: baohanh,
+                                    brand: brand,
+                                    suppli: suppli,
+                                    trangthai: trangthai,
+                                    id_product: id_product,
+                                },
+                                success: function (data) {
+                                    alert(data);
+                                    loadProduct(1);
+                                    loadPaginationProduct(1);
+                                    $(".product-edit-form .close").click();
+                                }
+                            })
+                        }
+                    } else {
+                        alert("Mời ghi mô tả");
+                        $(".product-add-form .input-desc").focus();
+                    }
+                } else {
+                    alert("Mời chọn ảnh");
+                }
             }
         } else {
             alert("Chưa điền Tên điện thoại")
             $(".product-add-form .input-name").focus();
         }
-
     })
+
+    $(".delivery-date").on("change", function () {
+        const myDateInput = $(this);
+        const myDateInputValue = myDateInput.val();
+        console.log(myDateInputValue);
+    })
+
+    // Click btb detail order
+    $(document).on("click", ".order-wrapp .edit", function () {
+        var oid = $(this).attr("oid");
+        loadOrderDetails(oid)
+    })
+
+    function loadOrderDetails(id_order) {
+        $.ajax({
+            url: "../function/loadOrderAdmin.php",
+            method: 'POST',
+            data: {
+                loadFormOrderDetails: 1,
+                id_order: id_order,
+            },
+            success: function (data) {
+                $(".product-order-form .modal-content").html(data);
+            }
+        });
+    }
+
+    $(document).on("click", ".product-order-form .submit", function () {
+        var trangthai = $(".product-order-form .form-check-input:checked").val();
+        var ngaygiao = $(".product-order-form .delivery-date").val();
+        var oid = $(this).attr("oid");
+        if (!trangthai) {
+            trangthai = 'Đang xử lí'
+        }
+        $.ajax({
+            url: '../function/loadOrderAdmin.php',
+            method: 'POST',
+            data: {
+                updateOrder: 1,
+                order_id: oid,
+                ngaygiao: ngaygiao,
+                trangthai: trangthai,
+            },
+            success: function (data) {
+                alert(data);
+                loadOrder();
+                $(".product-order-form .close").click();
+            }
+        })
+    })
+
+    // Export file excel
+    $(document).on('click', '.btn-order', function () {
+        $("#table-order").table2excel({
+            filename: "DonHang"
+        }
+        )
+    })
+
 })

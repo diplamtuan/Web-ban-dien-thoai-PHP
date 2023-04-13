@@ -1,13 +1,7 @@
 <?php
 session_start();
-include '../classes/db.class.php';
-include '../classes/cart.class.php';
-include '../classes/cartView.class.php';
-include '../classes/cartCtrl.class.php';
-include '../classes/product.class.php';
-include '../classes/productView.class.php';
-include '../classes/productCtrl.class.php';
 
+include '../includes/autoload.php';
 
 if (isset($_POST['loadOrder'])) {
     $id_custommer =  $_SESSION['auth_user']['id_khachhang'];
@@ -156,6 +150,7 @@ if (isset($_POST['loadOrderDetail'])) {
         <div class='card-body'>
         ";
         foreach ($result as $item) {
+            $diachi = $item['Diachigiaohang'];
             $hinhanh = $item['Anhdt'];
             $tendt = $item['Tendt'];
             $soluong = $item['soluong'];
@@ -196,10 +191,12 @@ if (isset($_POST['loadOrderDetail'])) {
         </div>
         <div class='d-flex justify-content-between pt-2'>
             <p class='fw-bold mb-0 fs-2'>Chi tiết đơn hàng</p>
+            <p class='fw-bold mb-0 fs-2'>Địa chỉ giao hàng</p>
         </div>
 
         <div class='d-flex justify-content-between'>
             <p class='text-muted mb-0 fs-3 text-black'>Ngày tạo đơn hàng :{$ngaydathang} </p>
+            <p class='text-muted mb-0 fs-3 text-black fw-bold'> {$diachi} </p>
         </div>
     </div>
     <div class='card-footer border-0 px-4 py-5' style='background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;'>

@@ -1,11 +1,8 @@
 <?php
 session_start();
-include '../classes/db.class.php';
-include '../classes/custommer.class.php';
-include '../classes/custommerView.class.php';
-include '../classes/custommerCtrl.class.php';
 
 
+include '../includes/autoload.php';
 
 
 if (isset($_POST['loadProfile'])) {

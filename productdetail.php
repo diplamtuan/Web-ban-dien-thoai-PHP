@@ -1,9 +1,9 @@
 <?php
 include 'header.php';
-include 'classes/db.class.php';
-include 'classes/product.class.php';
-include 'classes/productView.class.php';
-
+// include 'classes/db.class.php';
+// include 'classes/product.class.php';
+// include 'classes/productView.class.php';
+include 'includes/autoload.php';
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

@@ -1,8 +1,6 @@
 <?php
-include '../classes/db.class.php';
-include '../classes/brand.class.php';
-include '../classes/brandView.class.php';
 
+include '../includes/autoload.php';
 
 $allBrand = new BrandView();
 $result = $allBrand->getAllBrandsView();

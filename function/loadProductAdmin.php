@@ -1,19 +1,6 @@
 <?php
-include '../classes/db.class.php';
-include '../classes/product.class.php';
-include '../classes/productView.class.php';
-include '../classes/productCtrl.class.php';
-include '../classes/discount.class.php';
-include '../classes/discountView.class.php';
-include '../classes/guarantee.class.php';
-include '../classes/guaranteeView.class.php';
-include '../classes/brand.class.php';
-include '../classes/brandView.class.php';
-include '../classes/suppli.class.php';
-include '../classes/suppliView.class.php';
 
-
-
+include '../includes/autoload.php';
 
 if (isset($_POST['loadProductAdmin'])) {
     $per_page_limit = 6;
@@ -130,6 +117,7 @@ if (isset($_POST['insertProduct'])) {
     $baohanh = $_POST['baohanh'];
     $brand = $_POST['brand'];
     $suppli = $_POST['suppli'];
+    $productCtrl = new ProductCtrl();
     $productModel = new ProductModel();
     $productModel->setTendt($tendt);
     $productModel->setAnhdt($image_name);
@@ -140,8 +128,6 @@ if (isset($_POST['insertProduct'])) {
     $productModel->setid_nhacungcap($suppli);
     $productModel->setid_khuyenmai($khuyenmai);
     $productModel->setid_baohanh($baohanh);
-
-    $productCtrl = new ProductCtrl();
     if ($productCtrl->insertProductCtrl($productModel)) {
         echo "Thêm sản phẩm thành công";
     } else echo "Thất bại";

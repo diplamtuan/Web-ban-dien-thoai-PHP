@@ -1,13 +1,7 @@
 <?php
 session_start();
-include '../classes/db.class.php';
-include '../classes/product.class.php';
-include '../classes/productView.class.php';
-include '../classes/productCtrl.class.php';
-include '../classes/cart.class.php';
-include '../classes/cartView.class.php';
-include '../classes/cartCtrl.class.php';
 
+include '../includes/autoload.php';
 
 
 if (isset($_POST['user_id']) && isset($_POST['product_id'])) {
@@ -33,12 +27,11 @@ if (isset($_POST['user_id']) && isset($_POST['product_id'])) {
             $km  = $result['Sogiamgia'];
             $km = (float)$km / 100;
             $product_priceOld = (int)$product_priceOld;
+            $productQuantity = $result['Soluong'];
             $priceNew = $product_priceOld - ($product_priceOld * $km);
             $quantity = $quantity1;
             $ID_khuyenmai = $result['ID_khuyenmai'];
             $ID_baohanh = $result['ID_baohanh'];
-            echo "Day la bao hanh :";
-            echo $ID_baohanh;
             $total = $quantity * $priceNew;
             $cartItem = array(
                 'product_id' => "$product_id",
@@ -50,13 +43,13 @@ if (isset($_POST['user_id']) && isset($_POST['product_id'])) {
                 'totalPrice' => "$total",
                 'ID_khuyenmai' => "$ID_khuyenmai",
                 'ID_baohanh' => "$ID_baohanh",
+                'QuantityStock' => "$productQuantity",
             );
         }
         $_SESSION['cart'][] = $cartItem;
     } else {
         if (checkExistProductId($cartList, $product_id)) {
             $product = new ProductView();
-            echo $product_id;
             $result = $product->getProductByIdView($product_id);
             if (isset($_POST['quantity'])) {
                 $quantity1 = $_POST['quantity'];
@@ -70,6 +63,7 @@ if (isset($_POST['user_id']) && isset($_POST['product_id'])) {
                 $km  = $result['Sogiamgia'];
                 $km = (float)$km / 100;
                 $product_priceOld = (int)$product_priceOld;
+                $productQuantity = $result['Soluong'];
                 $priceNew = $product_priceOld - ($product_priceOld * $km);
                 $quantity = $quantity1;
                 $ID_khuyenmai = $result['ID_khuyenmai'];
@@ -85,6 +79,7 @@ if (isset($_POST['user_id']) && isset($_POST['product_id'])) {
                     'priceOld' => "$product_priceOld",
                     'ID_khuyenmai' => "$ID_khuyenmai",
                     'ID_baohanh' => "$ID_baohanh",
+                    'QuantityStock' => "$productQuantity",
                 );
                 $_SESSION['cart'][] = $cartItem;
             }
@@ -136,7 +131,7 @@ if (isset($_POST['loadCart'])) {
                                             <i class='fas fa-minus'></i>
                                         </button>
         
-                                        <input id='form1' pid={$item['product_id']} min='1' max='100' name='quantity' value='{$item['quantity']}' type='number' class='form-control form-control-sm fs-3 qty qty-{$item['product_id']}' disabled/>
+                                        <input id='form1' pid={$item['product_id']} min='1' max='{$item['QuantityStock']}' name='quantity' value='{$item['quantity']}' type='number' class='form-control form-control-sm fs-3 qty qty-{$item['product_id']}' disabled/>
         
                                         <button class='btn btn-link px-2 add-qty' pid={$item['product_id']} onclick='this.parentNode.querySelector(`input[type=number]`).stepUp()'>
                                             <i class='fas fa-plus'></i>
@@ -245,6 +240,8 @@ if (isset($_POST['checkOut'])) {
 
 
         // Tao don hang
+
+        $CartCtrl = new CartCtrl();
         $Cart = new CartModel();
         $Cart->setID_khachhang($id_khachhang);
         $Cart->setID_nhanvien($id_nhanvien);
@@ -253,13 +250,12 @@ if (isset($_POST['checkOut'])) {
         $Cart->setDiachigiaohang($Diachi);
         $Cart->setTrangthaidonhang($trangthaidonhang);
         $Cart->setNgaygiaohang($Ngaygiaohang);
-        $CartCtrl = new CartCtrl();
         $order_id = $CartCtrl->inserCartCtrl($Cart);
         // Cart Details
         // Tao chi tiet don hang
         $result = $_SESSION['cart'];
         foreach ($result as $item) {
-            $CartDetail = new CartDetailModel();
+
             $productView = new ProductView();
             $productCtrl = new ProductCtrl();
             $id_dienthoai = $item['product_id'];
@@ -273,6 +269,7 @@ if (isset($_POST['checkOut'])) {
             $ID_khuyenmai = $item['ID_khuyenmai'];
             $ID_baohanh = $item['ID_baohanh'];
             $giasaukm = $item['price'];
+            $CartDetail = new CartDetailModel();
             $CartDetail->setID_donhang($order_id);
             $CartDetail->setID_dienthoai($id_dienthoai);
             $CartDetail->setSoluong($soluong);
@@ -281,11 +278,13 @@ if (isset($_POST['checkOut'])) {
             $CartDetail->setID_baohanh($ID_baohanh);
             $CartDetail->setGiasaukm($giasaukm);
             // Goi ham update quantity product va insertCart
-            $CartCtrl->insertCartDetailCtrl($CartDetail);
-            $productCtrl->updateProductQuantityCtrl($id_dienthoai, $productQtyAfter);
+            if ($productCtrl->updateProductQuantityCtrl($id_dienthoai, $productQtyAfter)) {
+                $CartCtrl->insertCartDetailCtrl($CartDetail);
+                $_SESSION['cart'] = [];
+            } else echo "false";
         }
-        $_SESSION['cart'] = [];
     } else {
         echo "Chưa đăng nhập";
+        // echo false;
     }
 }

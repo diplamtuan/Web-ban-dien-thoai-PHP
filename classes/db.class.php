@@ -1,6 +1,4 @@
 <?php
-
-
 class Db
 {
     private $host = 'localhost';

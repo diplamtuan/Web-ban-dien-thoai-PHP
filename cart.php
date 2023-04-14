@@ -303,14 +303,29 @@ include 'header.php';
                     priceTotal: priceTotal,
                 },
                 success: function(data) {
-                    if (data != "Chưa đăng nhập") {
-                        console.log(data);
-                        alert("Đặt hàng thành công");
-                        loadCart();
-                    } else {
+                    // if (data != "Chưa đăng nhập") {
+                    //     console.log(data);
+                    //     alert("Đặt hàng thành công");
+                    //     loadCart();
+                    // } else {
+                    //     alert(data);
+                    //     location.href = 'login.php';
+                    // }
+                    if (data == 'Chưa đăng nhập') {
                         alert(data);
                         location.href = 'login.php';
+                    } else {
+                        if (data !== "fasle") {
+                            console.log(data);
+                            alert("Đặt hàng thành công");
+                            loadCart();
+                        } else {
+                            console.log(data);
+                            alert("Số lượng tồn không đủ vui lòng chọn lại số lượng!");
+                            loadCart();
+                        }
                     }
+
                 }
             })
         })

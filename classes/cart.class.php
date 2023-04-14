@@ -8,6 +8,7 @@ if (strpos($url, 'function') !== false) {
 include  $path . 'CartModel.php';
 include  $path . 'CartDetailModel.php';
 
+
 class Cart extends Db
 {
     protected function insertCart(CartModel $cart)
@@ -47,10 +48,8 @@ class Cart extends Db
         $sql = "INSERT into chitietdonhang(id_donhangnew,id_dienthoai,soluong,gia,ID_khuyenmai,ID_baohanh,Giasaukm) 
         VALUES('$id_donhang','$id_dienthoai','$soluong','$gia','$id_khuyenmai','$id_baohanh','$giasaukm')";
         if (mysqli_query($this->connect(), $sql)) {
-            echo "success";
             return true;
         } else {
-            echo "Error";
             return false;
         }
     }
@@ -72,7 +71,7 @@ class Cart extends Db
 
     protected function getOrderDetailByIdOrder($id_order)
     {
-        $sql = "SELECT dienthoai.Anhdt,dienthoai.Tendt,chitietdonhang.soluong,chitietdonhang.gia,chitietdonhang.Giasaukm,donhang.Tonggiatien,donhang.Ngaydathang,dienthoai.id_dienthoai
+        $sql = "SELECT dienthoai.Anhdt,dienthoai.Tendt,chitietdonhang.soluong,chitietdonhang.gia,chitietdonhang.Giasaukm,donhang.Tonggiatien,donhang.Ngaydathang,dienthoai.id_dienthoai,donhang.NgayGiaoHang,donhang.Trangthaidonhang,donhang.Diachigiaohang
         from chitietdonhang,dienthoai,donhang
         where chitietdonhang.id_donhangnew = '$id_order' and dienthoai.ID_dienthoai = chitietdonhang.id_dienthoai and chitietdonhang.id_donhangnew = donhang.id_donhang";
         $result = mysqli_query($this->connect(), $sql);

@@ -3,10 +3,11 @@ class ProductCtrl extends Product
 {
     public function updateProductQuantityCtrl($id, $quantity)
     {
-        if ($this->updateProductQuantity($id, $quantity)) {
-            return true;
-        }
-        return false;
+        // if ($this->updateProductQuantity($id, $quantity)) {
+        //     return true;
+        // }
+        // return false;
+        return $this->updateProductQuantity($id, $quantity);
     }
 
     public function insertProductCtrl(ProductModel $product)
@@ -24,10 +25,5 @@ class ProductCtrl extends Product
     public function updateProductCtrl(ProductModel $product)
     {
         return $this->updateProduct($product);
-    }
-
-    public function getProductsAdminByIdView($id)
-    {
-        return $this->getProductsAdminById($id);
     }
 }

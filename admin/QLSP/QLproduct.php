@@ -11,7 +11,7 @@
     table td,
     table th {
       vertical-align: middle;
-      text-align: right;
+      text-align: center;
       padding: 10px !important;
 
     }
@@ -163,24 +163,24 @@
 
       if (action == 'Edit') {
         Reardproduct(button, ID_dt);
-        $('#id,#id_dt').show();
+        $('#id,#id_dt,#button_edit,#button_edit,#active').show();
         $("#button_insert").hide();
-        $("#button_edit").show();
+        // $("#button_edit").show();
         $('#button_edit').off('click').on('click', function() {
 
           var key = $(this).data('key');
-          var a = $('#image_preview').attr('value')
+          var fileName = $('#image_preview').attr('value');
           // var fileName = $('#file_upload')[0].files[0];
-          Dataproduct(key,a);
+          Dataproduct(key,fileName);
 
         });
       } else if (action == 'AddProduct') {
         $('input[type="text"], textarea,select').val('');
         
         $('#image_preview').attr('src', '').attr('value','');
-        $('#id,#id_dt').hide();
-        $("#button_edit").hide();
+        $('#id,#id_dt,#button_edit,#active').hide();
         $("#button_insert").show();
+        
         $('#button_insert').off('click').on('click', function() {
           var key = $(this).data('key');
           // var fileName = $('#image_preview').attr('value'); // Lấy tên file ảnh
@@ -209,15 +209,13 @@
           $('select[name="idncc"]').val(response.ID_ncc);
           $('input[name="tendt"]').val(response.Tendt);
           $('#image_preview').attr('src', '../../assets/img/' + response.Anhdt).attr('value', response.Anhdt);
-          
-          
           $('textarea[name="mota"]').val(response.Motadt);
           $('input[name="gia"]').val(response.Giadt);
           $('input[name="soluong"]').val(response.Soluong);
           $('input[name="luotxem"]').val(response.Luotxem);
           $('select[name="idkm"]').val(response.id_km);
           $('select[name="idbh"]').val(response.id_bh);
-
+          $('input[name="active"]').prop('checked', response.trangthai=='Active');
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -297,15 +295,54 @@
 });
   var page = $('.pagination_link.current').attr('id');
   var id_brand = $('#brand').val();
+  
+  var formData = new FormData();
   var ID_dienthoai = $('#id_dt').val();
   var id_thuonghieu = $('#idthuonghieu').val();
   var id_nhacungcap = $('#idncc').val();
+      
+      if ($('#tendt').val() == '') {
+        if ($('#tendt').next('span.error').length == 0) {
+          $('#tendt').after('<span class="error">Vui lòng nhập tên điện thoại</span>');
+          $('#tendt').focus();
+          $('#tendt').css('background-color', 'yellow');
+        } else {
+          $('#tendt').next('span.error').html('Vui lòng nhập tên điện thoại');
+        }
+      } else {
+        var Tendt = $('#tendt').val();
+        formData.append('Tendt', Tendt);
+      }
+      if ($('#mota').val() == '') {
+        if ($('#mota').next('span.error').length == 0) {
+          $('#mota').after('<span class="error">Vui lòng nhập mô tả </span>');
+          $('#mota').focus();
+          $('#mota').css('background-color', 'yellow');
+        } else {
+          $('#mota').next('span.error').html('Vui lòng nhập mô tả ');
+        }
+      } else {
+        var Mota = $('#mota').val();
+        formData.append('Mota', Mota);
+      }
+      
+      $('#tendt').on('input', function() {
+        if ($('#tendt').next('span.error').length) {
+          $('#tendt').next('span.error').remove();
+          $('#tendt').css('background-color', 'transparent');
+        }
+      });
+      $('#mota').on('input', function() {
+        if ($('#mota').next('span.error').length) {
+          $('#mota').next('span.error').remove();
+          $('#mota').css('background-color', 'transparent');
+        }
+      });
 
-  var Tendt = $('#tendt').val();
-
-  var formData = new FormData();
-  var Anhdt = $('#file_upload')[0].files[0];
+   
   var image = $('#image_preview').attr('value');
+  var Anhdt = $('#file_upload')[0].files[0];
+
   formData.append('Anhdt', Anhdt);
   var Mota = $('#mota').val();
   var Gia = $('#gia').val();
@@ -313,18 +350,20 @@
   var luotxem = $('#luotxem').val();
   var id_baohanh = $('#idbh').val();
   var id_km = $('#idkm').val();
+  var active = $('input[name="active"]').prop('checked')? 'Active':'Not Active';
   formData.append('key', key);
   formData.append('ID_dienthoai', ID_dienthoai);
   formData.append('id_thuonghieu', id_thuonghieu);
   formData.append('id_nhacungcap', id_nhacungcap);
-  formData.append('Tendt', Tendt);
-  formData.append('Mota', Mota);
+  // formData.append('Tendt', Tendt);
+  // formData.append('Mota', Mota);
   formData.append('Gia', Gia);
   formData.append('soluong', soluong);
   formData.append('luotxem', luotxem);
   formData.append('id_baohanh', id_baohanh);
   formData.append('id_km', id_km);
   formData.append('image', image); 
+  formData.append('active',active);
 
   $.ajax({
     url: './insertproduct.php',

@@ -1,4 +1,6 @@
 <?php
+include('../../DTO/ProductModel.php');
+
 class sanpham extends Db
 {
 // display catelogy 
@@ -152,7 +154,7 @@ protected function getCartegory(){
           }
       }
       protected function getAlldataProduct($id){
-        $sql ="SELECT dienthoai.ID_dienthoai,dienthoai.ID_thuonghieu,dienthoai.ID_Nhacungcap,dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,dienthoai.Soluong,dienthoai.Luotxem,dienthoai.ID_khuyenmai,dienthoai.ID_baohanh, baohanh.Tenbaohanh,khuyenmai.tenkhuyenmai,thuonghieu.tenthuonghieu FROM dienthoai, thuonghieu, nhacungcap, baohanh, khuyenmai WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu AND dienthoai.ID_Nhacungcap = nhacungcap.id_nhacungcap AND dienthoai.ID_baohanh = baohanh.ID_Baohanh AND dienthoai.ID_khuyenmai = khuyenmai.id_khuyenmai AND dienthoai.ID_dienthoai=$id;
+        $sql ="SELECT dienthoai.ID_dienthoai,dienthoai.ID_thuonghieu,dienthoai.ID_Nhacungcap,dienthoai.Tendt, dienthoai.Anhdt,dienthoai.Motadt,dienthoai.Giadt,dienthoai.Soluong,dienthoai.Luotxem,dienthoai.ID_khuyenmai,dienthoai.ID_baohanh,dienthoai.trangthai, baohanh.Tenbaohanh,khuyenmai.tenkhuyenmai,thuonghieu.tenthuonghieu FROM dienthoai, thuonghieu, nhacungcap, baohanh, khuyenmai WHERE dienthoai.ID_thuonghieu = thuonghieu.id_thuonghieu AND dienthoai.ID_Nhacungcap = nhacungcap.id_nhacungcap AND dienthoai.ID_baohanh = baohanh.ID_Baohanh AND dienthoai.ID_khuyenmai = khuyenmai.id_khuyenmai AND dienthoai.ID_dienthoai=$id;
         ";
          $result = mysqli_query($this->connect(), $sql);
          $resultCheck = mysqli_num_rows($result);
@@ -225,6 +227,13 @@ protected function getCartegory(){
             return false;
         }
     }
+    protected function deleteProduct($id_product)
+    {
+        $sql = "UPDATE dienthoai set trangthai='Not Active' where ID_dienthoai = '$id_product'";
+        if (mysqli_query($this->connect(), $sql)) {
+            return true;
+        } else return false;
+    }
     // UPDATE dienthoai SET ID_thuonghieu=1,ID_Nhacungcap=1,Tendt='lehongthai',Anhdt='thai.jpg',Motadt='deptrai',Giadt=1200,Soluong=3,Luotxem=39,ID_khuyenmai=1,ID_baohanh=1 WHERE ID_dienthoai=17
     protected function UpdateProduct($id_product,$ID_th,$ID_ncc,$Tendt,$filename,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh){
         $sql = "UPDATE dienthoai SET ID_thuonghieu=$ID_th,ID_Nhacungcap=$ID_ncc,Tendt='$Tendt',Anhdt='$filename',Motadt='$Mota',Giadt=$Gia,Soluong=$soluong,Luotxem=$luotxem,ID_khuyenmai=$ID_km,ID_baohanh=$ID_bh WHERE ID_dienthoai=$id_product";
@@ -245,14 +254,42 @@ protected function getCartegory(){
             return false;
         }
     }
-    protected function InsertProduct($ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh){
-        $sql = "INSERT INTO `dienthoai` (`ID_thuonghieu`, `ID_Nhacungcap`, `Tendt`, `Anhdt`, `Motadt`, `Giadt`, `Soluong`, `Luotxem`, `ID_khuyenmai`, `ID_baohanh`) 
-        VALUES ($ID_th, $ID_ncc,'$Tendt','$Anhdt','$Mota',$Gia,$soluong,$luotxem,$ID_km,$ID_bh)";
-        $result = mysqli_query($this->connect(),$sql);
-        if($result){
+
+
+    // Thêm sửa sanpham 
+    protected function insertsanpham(ProductModel $product)
+    {
+        $tendt = $product->getTendt();
+        $anhdt = $product->getAnhdt();
+        $mota = $product->getMota();
+        $giadt = $product->getGiadt();
+        $soluong = $product->getSoluong();
+        $id_thuonghieu = $product->getid_thuonghieu();
+        $id_nhacungcap = $product->getid_nhacungcap();
+        $id_khuyenmai = $product->getid_khuyenmai();
+        $id_baohanh = $product->getid_baohanh();
+        $luotxem = 0;
+        $trangthai = 'Active';
+        $sql = "INSERT INTO dienthoai (Tendt,Anhdt,Motadt,Giadt,Soluong,ID_thuonghieu,ID_Nhacungcap,ID_khuyenmai,ID_baohanh,trangthai,luotxem) VALUES('$tendt','$anhdt','$mota','$giadt','$soluong','$id_thuonghieu','$id_nhacungcap','$id_khuyenmai','$id_baohanh','$trangthai','$luotxem')";
+        if (mysqli_query($this->connect(), $sql)) {
             return true;
-        }else{
-            return false;
-        }
+        } else  return false;
+    }
+
+    protected function updatesanpham(ProductModel $product)
+    {
+        $id_Dienthoai = $product->getId_dienthoai();
+        $tendt = $product->getTendt();
+        $anhdt = $product->getAnhdt();
+        $mota = $product->getMota();
+        $id_thuonghieu = $product->getid_thuonghieu();
+        $id_nhacungcap = $product->getid_nhacungcap();
+        $id_khuyenmai = $product->getid_khuyenmai();
+        $id_baohanh = $product->getid_baohanh();
+        $trangthai = $product->getTrangthai();
+        $sql = "UPDATE dienthoai set Tendt = '$tendt',Anhdt = '$anhdt',Motadt = '$mota',ID_thuonghieu ='$id_thuonghieu',ID_Nhacungcap='$id_nhacungcap',ID_khuyenmai='$id_khuyenmai',ID_baohanh='$id_baohanh',trangthai='$trangthai' where ID_dienthoai ='$id_Dienthoai'";
+        if (mysqli_query($this->connect(), $sql)) {
+            return true;
+        } else return false;
     }
 }

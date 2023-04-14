@@ -112,7 +112,7 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="assets/js/Admin.js"></script>
 
-    <script src="./index.js">
+    <script src="./index123.js">
     </script>
 </body>
 

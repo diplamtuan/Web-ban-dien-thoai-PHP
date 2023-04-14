@@ -1,5 +1,4 @@
 <?php
-// $conn = mysqli_connect('localhost', 'root', '', 'projectphp');
 
 include('../../model/db.class.php');
 include '../../model/ADMINsanpham.class.php';
@@ -12,14 +11,10 @@ $sanpham = new sanphamview();
 if(isset($_POST['id'])){
   $id = $_POST['id'];
 }
-// // Thực hiện truy vấn để lấy thông tin người dùng
-// $query = "SELECT * FROM dienthoai WHERE ID_dienthoai = $id";
-// $result = mysqli_query($conn, $query);
 $result = $sanpham->getAlldataProductView($id);
 // Trả về kết quả dưới dạng JSON
 
 if ($result) {
-  // $row = mysqli_fetch_assoc($result);
   $row = $result[0];
   $respons = array(
     'ID_dienthoai' => $row['ID_dienthoai'],
@@ -30,9 +25,10 @@ if ($result) {
     'Motadt' => $row['Motadt'],
     'Giadt' => $row['Giadt'],
     'Soluong' => $row['Soluong'],
-    'Luotxem' => $row['Luotxem'],
+    // 'Luotxem' => $row['Luotxem'],
     'id_km' => $row['ID_khuyenmai'],
     'id_bh' => $row['ID_baohanh'],
+    'trangthai' => $row['trangthai'],
   );
   echo json_encode($respons);
 } else {

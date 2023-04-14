@@ -12,8 +12,8 @@
     <!-- Slick slider -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- slick slider -->
-    <link rel="stylesheet" href="./assets/css/lamtuan2.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/css/lamtuan.css">
+    <link rel="stylesheet" href="./assets/css/responsive1.css">
     <link rel="stylesheet" href="./assets/css/lethai.css">
 </head>
 

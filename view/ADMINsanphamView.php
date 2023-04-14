@@ -136,11 +136,27 @@ public function getInforSPProductView($input,$offset, $limit_per_pages){
         }
         return $result;
     }
-    public function getInsertProduct($ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh){
-        $result = $this->InsertProduct($ID_th,$ID_ncc,$Tendt,$Anhdt,$Mota,$Gia,$soluong,$luotxem,$ID_km,$ID_bh);
-        if($result == false) {
-            return false;
-        }
-        return $result;
+
+
+//DTO 
+public function deleteProductView($id_product){
+    $result = $this->deleteProduct($id_product);
+    if($result == false) {
+        return false;
     }
+    return $result;
+}
+public function insertsanphamView(ProductModel $product)
+{
+    if ($this->insertsanpham($product)) {
+        return true;
+    } else return false;
+}
+public function updatesanphamView(ProductModel $product)
+{
+    if ($this->updatesanpham($product)) {
+        return true;
+    } else return false;
+}
+
 }

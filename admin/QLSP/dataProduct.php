@@ -8,7 +8,7 @@ $sanpham = new sanphamview();
 $output = "";
 $page = '';
 
-$limit_per_pages = 5;
+$limit_per_pages = 3;
 if (isset($_POST['page'])) {
     $page = (int)$_POST['page'];
 } else {
@@ -65,6 +65,7 @@ Add product
                 <th>Giá</th>
                 <th>Tên thương hiệu</th>
                 <th>Tên NCC</th>
+                <th>Trạng thái</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -80,24 +81,24 @@ Add product
         $Giadt = $data['Giadt'];
         $TenTH = $data['tenthuonghieu'];
         $TenNCC = $data['tennhacungcap'];
+        $trangthai = $data['trangthai'];
         $output .= "
        
        <tr>
        <td> $ID_dt</td>
        <td> $Tendt</td>
-       <td>$Anhdt</td>
+       <td><img src='../../assets/img/$Anhdt' style='width:100px; height:100px'></td>
        <td>$Giadt</td>
        <td>$TenTH</td>
        <td>$TenNCC</td>
+       <td>$trangthai</td> 
       <td>
-          <button  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_dialog' data-action ='Reard' data-id=' $ID_dt'>
-          Read more
-        </button> 
                   <button data-id_product='$ID_dt' class = 'btn btn-danger del_product' name='delete_data' >Delete</button>
           <button  type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_dialog' data-action ='Edit' data-id=' $ID_dt'>
           Edit
         </button>  
-        </td>    
+        </td>  
+       
   </tr>
        ";
     }

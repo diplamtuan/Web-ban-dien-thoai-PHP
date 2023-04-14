@@ -36,7 +36,7 @@ if (isset($_POST['loadProductAdmin'])) {
             $anhdt = $item['Anhdt'];
             $thuonghieu = $item['tenthuonghieu'];
             $gia = $item['Giadt'];
-            $formmatGia = number_format($gia, 0, ',', ',');
+            $formmatGia = number_format((int)$gia, 0, ',', ',');
             $soluong = $item['Soluong'];
             $Trangthai = $item['trangthai'];
             if ($Trangthai == 'Active') {

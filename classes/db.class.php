@@ -4,7 +4,7 @@ class Db
     private $host = 'localhost';
     private $servername = 'root';
     private $pwd = '';
-    private $dbName = 'projectphp';
+    private $dbName = 'projectweb2';
     protected $conn;
     protected function connect()
     {

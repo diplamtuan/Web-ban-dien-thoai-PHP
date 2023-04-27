@@ -5,4 +5,17 @@ class AccountCtrl extends Account
     {
         return $this->insertAccount($account);
     }
+
+   
+
+    public function updateAccountCtrl(AccountModel $account)
+    {
+        return $this->updatetAccount($account);
+    }
+
+    public function deleteAccountCtrl(AccountModel $account)
+    {
+        return $this->deletetAccount($account);
+    }
+
 }

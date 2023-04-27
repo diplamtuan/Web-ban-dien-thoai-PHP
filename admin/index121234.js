@@ -159,7 +159,6 @@ $(document).ready(function () {
     })
 
     $(document).on('change', '.product-edit-form .file-input', function () {
-       
         const file = $(this)[0].files[0];
         console.log(file);
         if (file.type.startsWith('image/')) {
@@ -307,7 +306,7 @@ $(document).ready(function () {
             console.log('Not active');
         }
         if (checkValue(tendt)) {
-            // if (checkValue(img)) {
+            if (checkValue(img)) {
                 if (checkValue(mota)) {
                     var image_name = $(".product-edit-form .file-input")[0].files[0].name;
                     var gia = $(".product-edit-form .input-price").val();
@@ -347,11 +346,6 @@ $(document).ready(function () {
                     alert("Mời ghi mô tả");
                     $(".product-add-form .input-desc").focus();
                 }
-<<<<<<<< HEAD:admin/index123.js
-            // } else {
-            //     alert("Mời chọn ảnh");
-            // }
-========
             } else {
                 if (imgName) {
                     if (checkValue(mota)) {
@@ -397,7 +391,6 @@ $(document).ready(function () {
                     alert("Mời chọn ảnh");
                 }
             }
->>>>>>>> main:admin/index12123.js
         } else {
             alert("Chưa điền Tên điện thoại")
             $(".product-add-form .input-name").focus();

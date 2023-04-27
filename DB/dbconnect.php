@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $passwd = "";
-$dbname = "projectphp";
+$dbname = "projectweb2";
 
 
 // Create connection

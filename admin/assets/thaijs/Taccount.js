@@ -18,12 +18,12 @@ $(document).ready(function () {
         loadFormAddAccount()
     })
 
-    $(document).on('click', '.submit-account', function () {
-        var tendangnhap = $('.input-nameaccount').val();
-        var matkhau = $('.input-matkhau').val();
-        var date = $('.input-ngaysinh').val();
-        var adress = $('.input-adress').val();
-        var phone = $('.input-phone').val();
+    $(document).on('click', '.product-add-form .submit-account', function () {
+        var tendangnhap = $('.product-add-form .input-nameaccount').val();
+        var matkhau = $('.product-add-form .input-matkhau').val();
+        var date = $('.product-add-form .input-ngaysinh').val();
+        var adress = $('.product-add-form .input-adress').val();
+        var phone = $('.product-add-form .input-phone').val();
         if (checkValue(tendangnhap)) {
             if (checkInPutMK(matkhau)) {
                 if (checkValue(date)) {
@@ -144,23 +144,23 @@ function checkInPutMK(data) {
         })
     })
 
-    $(document).on('click','.edit-account',function(){
+    $(document).on('click','.product-edit-form .edit-account',function(){
         var id_taikhoan = $(this).attr('id'); 
        
-        var matkhau = $('.input-matkhau').val();
-        var ngaysinh = $('.input-ngaysinh').val();
-        var adress = $('.input-adress').val();
-        var phone = $('.input-phone').val();
+        var matkhau = $('.product-edit-form .input-matkhau').val();
+        var ngaysinh = $('.product-edit-form .input-ngaysinh').val();
+        var adress = $('.product-edit-form .input-adress').val();
+        var phone = $('.product-edit-form .input-phone').val();
         if (checkInPutMK(matkhau)) {
             if (checkValue(ngaysinh)) {
                 if (checkValue(adress)) {
                     if (checkInPutSDT(phone)) {
-                    var id_quyen = $('#quyentk').val();
-                    var active = $('input[name="active-account"]').prop('checked')? 'T':'F';
+                    var id_quyen = $('.product-edit-form #quyentk').val();
+                    var active = $('.product-edit-form input[name="active-account"]').prop('checked')? 'T':'F';
                   
-                    var gioitinh = $('#gioitinh').val();
-                    var ngaytao = $('.input-ngaytao').val();
-                    var tendangnhap = $('.input-nameaccount').val();
+                    var gioitinh = $('.product-edit-form #gioitinh').val();
+                    var ngaytao = $('.product-edit-form .input-ngaytao').val();
+                    var tendangnhap = $('.product-edit-form .input-nameaccount').val();
 
                     $.ajax({ 
                         url: '../function/loadAccountAdmin.php',
@@ -264,7 +264,7 @@ function loadFormAddAccount() {
             loadFormAddAccount: 1,
         },
         success: function (data) {
-            $(".modal-content").html(data);
+            $(".product-add-form .modal-content").html(data);
         }
     })
 }

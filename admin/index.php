@@ -12,7 +12,7 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/main123.css">
-    <link rel="stylesheet" href="../assets/css/thai.css">
+    <link rel="stylesheet" href="../assets/css/lehongthai.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,7 +30,7 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
                 <ul class="side-dropdown">
                     <!-- <li class="account"><a href="#">Quản lý tài khoản</a></li> -->
                     <li class="baohanh"><a href="#">Quản lý bảo hành</a></li>
-                    <li class="khuyemai"><a href="#">Quản lý khuyến mãi</a></li>
+                    <li class="khuyenmai"><a href="#">Quản lý khuyến mãi</a></li>
                     <li class="nhanvien"><a href="#">Danh sách nhân viên</a></li>
                     <li class="khachhang"><a href="#">Danh sách khachhang</a></li>
                     <li class="#"><a href="#">Quản lý thương hiệu</a></li>
@@ -130,10 +130,11 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.1.1/dist/jquery.table2excel.min.js"></script>
 
     <script src="./index121234.js"> </script>
-    <script src ='assets/thaijs/accountT.js'></script>
-    <script src ='assets/thaijs/BaoHanh.js'></script>
+    <script src ='assets/thaijs/Taccount.js'></script>
+    <script src ='assets/thaijs/TBaoHanh.js'></script>
     <script src='assets/thaijs/nhanvienTH.js'></script>
     <script src='assets/thaijs/khachhang.js'></script>
+    <script src='assets/thaijs/Tkhuyenmai.js'></script>
 </body>
 
 </html>

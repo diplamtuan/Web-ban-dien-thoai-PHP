@@ -103,9 +103,8 @@ if (isset($_POST['loadFormAddAccount'])) {
     <button type='button' class='btn btn-secondary close-account' data-bs-dismiss='modal'>Close</button>
     <button type='button' class='btn btn-primary submit-account'>Save</button>
 </div>
-        ";
-      echo   $_SESSION["key"] ;
-    echo $output;
+        ";  
+        echo $output;
     
 }
 if (isset($_POST['insert_account'])) {
@@ -444,9 +443,6 @@ if (isset($_POST['loadPaginationAccount'])) {
 else{
     echo '';
 }
-   
-    
-
     $output .= "
     
     </ul>";

@@ -68,14 +68,14 @@ $(document).ready(function () {
     })
 })
 
-$(document).on('click','.edit-baohanh',function(){
+$(document).on('click','.product-edit-form .edit-baohanh',function(){
     var id_baohanh = $(this).attr('id-baohanh'); 
-    var tenbaohanh = $('.input-namebaohanh').val();
-    var thoigianbaohanh = $('.input-thoigianbaohanh').val();
+    var tenbaohanh = $('.product-edit-form .input-namebaohanh').val();
+    var thoigianbaohanh = $('.product-edit-form .input-thoigianbaohanh').val();
     if (checkValue(tenbaohanh)) {
         if (checkValue(thoigianbaohanh)) {
             
-                var active = $('input[name="active-baohanh"]').prop('checked')? 'T':'F';
+                var active = $('.product-edit-form input[name="active-baohanh"]').prop('checked')? 'T':'F';
               
                 $.ajax({
                     url: '../function/loadbaohanh.php',
@@ -114,9 +114,9 @@ $(document).on('click','.edit-baohanh',function(){
         loadFormAddBaohanh();
     })
 
-    $(document).on('click', '.submit-Baohanh', function () {
-        var tenbaohanh = $('.input-namebaohanh').val();
-        var thoigianbaohanh = $('.input-thoigianbaohanh').val();
+    $(document).on('click', '.product-add-form .submit-Baohanh', function () {
+        var tenbaohanh = $('.product-add-form .input-namebaohanh').val();
+        var thoigianbaohanh = $('.product-add-form .input-thoigianbaohanh').val();
         if (checkValue(tenbaohanh)) {
             if (checkValue(thoigianbaohanh)) {
                 
@@ -178,7 +178,7 @@ $(document).on('click','.edit-baohanh',function(){
                 loadFormAddbaohanh: 1,
             },
             success: function (data) {
-                $(".modal-content").html(data);
+                $(".product-add-form .modal-content").html(data);
             }
         })
     }

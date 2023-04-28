@@ -2,7 +2,7 @@
     background-color: burlywood;
 }
 
-.form-input-account input,.form-input-baohanh input  {
+.form-input-account input,.form-input-baohanh input,.form-input-KhuyenMai input  {
     background: transparent;
     outline: none;
     padding: 8px 50px;

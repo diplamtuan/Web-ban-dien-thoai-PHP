@@ -9,7 +9,7 @@ $(document).ready(function () {
             success: function (data) {
                 $("main").html(data);
                 loadAccount(1);
-                loadPaginationAccount(1);
+                loadPaginationAccount(1,'');
             }
         })
     })
@@ -181,6 +181,7 @@ function checkInPutMK(data) {
                         success: function (data) {
                             alert(data);
                             loadAccount();
+                            loadPaginationAccount(1);
                             $(".close-account").click();
                         }
                     })
@@ -212,6 +213,7 @@ function checkInPutMK(data) {
         current_page = id_page; 
         loadAccount(id_page,input);
         loadPaginationAccount(id_page,input);
+        $('#search_account').val('');
     })
 
     $(document).on('keyup','#search_account', function() {

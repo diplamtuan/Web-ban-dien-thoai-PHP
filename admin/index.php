@@ -130,7 +130,7 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.1.1/dist/jquery.table2excel.min.js"></script>
 
     <script src="./index121234.js"> </script>
-    <script src ='assets/thaijs/Taccount.js'></script>
+    <script src ='assets/thaijs/HTaccount.js'></script>
     <script src ='assets/thaijs/TBaoHanh.js'></script>
     <script src='assets/thaijs/nhanvienTH.js'></script>
     <script src='assets/thaijs/khachhang.js'></script>

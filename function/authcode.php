@@ -80,16 +80,18 @@ if (isset($_POST['login'])) {
             }
         } else {
             // Loai tai khoan !=1 la nhan vien
-            $queryData = "SELECT nhanvien.id_nhanvien,taikhoan.tendangnhap
+            $queryData = "SELECT nhanvien.id_nhanvien,taikhoan.tendangnhap,ID_quyen
             from nhanvien,taikhoan
-            where taikhoan.tendangnhap ='$username' and taikhoan.matkhau='$pass'";
+            where taikhoan.tendangnhap ='$username' and taikhoan.matkhau='$pass' and taikhoan.tendangnhap = nhanvien.tennhanvien";
             if (mysqli_num_rows(mysqli_query($conn, $queryData)) > 0) {
                 $userdata = mysqli_fetch_array(mysqli_query($conn, $queryData));
                 $id_nhanvien = $userdata['id_nhanvien'];
+                $id_quyen = $userdata['ID_quyen'];
                 $_SESSION['auth'] = true;
                 $_SESSION['auth_user'] = [
                     'username' => $tentaikhoan,
                     'id_nhanvien' => $id_nhanvien,
+                    'id_quyen' => $id_quyen,
                 ];
                 echo "Day la nhan vien";
             }

@@ -653,6 +653,10 @@ footer .copy-right {
     background: #ccc;
 }
 
+.menu_item.active {
+    font-weight: 500;
+    background: #ccc;
+}
 
 /* filter */
 

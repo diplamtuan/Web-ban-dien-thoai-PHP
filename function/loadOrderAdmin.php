@@ -48,7 +48,7 @@ if (isset($_POST['loadOrderAdmin'])) {
             <td class=' fs-5' style='max-width: 310px;'>{$diachi}</td>
             <td class=' fs-5'>{$tongtien}</td>
             <td class=' fs-5 {$className} fw-bold'>{$trangthai}</td>
-            <td class=' fs-5'>
+            <td class=' fs-5 hideme'>
                 <div class='d-flex justify-content-around align-items-center control-wrap'>
                     <i class='fa-solid fa-pen-to-square edit' oid='{$id_donhang}' data-bs-toggle='modal' data-bs-target='#exampleModalOrder'></i>
                 </div>
@@ -213,6 +213,7 @@ if (isset($_POST['updateOrder'])) {
     $trangthai = $_POST['trangthai'];
     $ngayupdate = date('Y-m-d');
     $id_nhanvien =  $_SESSION['auth_user']['id_nhanvien'];
+    echo $id_nhanvien;
 
     $orderCtrl = new OrderCtrl();
     $orderModel = new OrderModel();

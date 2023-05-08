@@ -1,13 +1,13 @@
 <?php
-echo "<div class='d-flex justify-content-around align-items-center order-control-wrap w-80 order-admin-wrap'>
-<h1 class='title'>Quản lí đơn hàng</h1>
- <div class='input-search'>
-        <input type='text' placeholder='Search...'>
-        <i class='bx bx-search-alt-2 icon'></i>
+echo "<div class='d-flex justify-content-around align-items-center order-control-wrap w-80 decentralization-wrap'>
+<h1 class='title'>Phân quyền</h1>
+<div class='decentralization-wrap'>
+    <select id='selectEmp' class='form-select fs-3 per-wrapp' aria-label='Default select example'>
+</select>
 </div>
+ 
 <button class='blob-btn btn-order'>
-    Export file Excel
-    <i class='fa-solid fa-file-excel fs-3'></i>
+    Submit
     <span class='blob-btn__inner'>
         <span class='blob-btn__blobs'>
             <span class='blob-btn__blob'></span>
@@ -32,19 +32,11 @@ echo "<div class='d-flex justify-content-around align-items-center order-control
                                     <thead style='background-color: #002d72;'>
                                         <tr class='fs-4'>
                                             <th scope='col'>STT</th>
-                                            <th scope='col'>Mã ĐH</th>
-                                            <th scope='col'>Tên KH</th>
-                                            <th scope='col'>Tên NV</th>
-                                            <th scope='col'>Ngày đặt</th>
-                                            <th scope='col'>Ngày giao</th>
-                                            <th scope='col'>Ngày Cập Nhật</th>
-                                            <th scope='col'>Địa chỉ</th>
-                                            <th scope='col'>Tổng tiền</th>
-                                            <th scope='col'>Trạng thái ĐH</th>
-                                            <th scope='col' class='hideme'>Xử lí</th>
+                                            <th scope='col'>Tên chức năng</th>
+                                            <th scope='col'>Xử lí</th>
                                         </tr>
                                     </thead>
-                                    <tbody class='order-wrapp'>
+                                    <tbody class='dencentralization-wrapp'>
 
                                     </tbody>
                                 </table>

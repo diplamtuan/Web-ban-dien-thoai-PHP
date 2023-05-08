@@ -215,6 +215,7 @@ $(document).ready(function () {
     }
     // Submit product add form
     $(document).on('click', '.product-add-form .submit', function () {
+
         var tendt = $(".product-add-form .input-name").val();
         var mota = $(".product-add-form .input-desc").val();
         var img = $(".product-add-form .file-input").val();
@@ -289,7 +290,6 @@ $(document).ready(function () {
         var pid = $(this).attr('pid');
         loadFormEditProduct(pid);
     })
-
     // Click vao nut submit edit
     $(document).on('click', '.product-edit-form .submit', function () {
         var id_product = $(this).attr('pid');
@@ -448,11 +448,109 @@ $(document).ready(function () {
     })
 
     // Export file excel
-    $(document).on('click', '.btn-order', function () {
+    $(document).on('click', '.order-admin-wrap .btn-order', function () {
         $("#table-order").table2excel({
-            filename: "DonHang"
+            exclude: ".hideme",
+            filename: "DonHang",
         }
         )
     })
+
+    // Click trang phan quyen
+    $(document).on('click', '.decentralization', function () {
+        $.ajax({
+            url: 'decentralization.php',
+            method: 'POST',
+            data: {
+                decentralization: 1,
+            },
+            success: function (data) {
+                $('main').html(data);
+                loadFeatures();
+                loadPer();
+            }
+        })
+    }
+    )
+
+    function loadFeatures(perId) {
+        $.ajax({
+            url: '../function/loadFeatureAdmin.php',
+            method: 'POST',
+            data: {
+                loadFeatures: 1,
+                perId: perId,
+            },
+            success: function (data) {
+                $(".dencentralization-wrapp").html(data);
+            }
+        })
+    }
+    // Xử lí giao diện decentralition
+
+    // Load Permission
+    function loadPer() {
+        $.ajax({
+            url: '../function/loadPerAdmin.php',
+            method: 'POST',
+            data: {
+                loadPer: 1
+            },
+            success: function (data) {
+                console.log(data);
+                $(".per-wrapp").html(data);
+            }
+
+        })
+    }
+    // Click vao option của employee
+    $(document).on('change', ".per-wrapp", function () {
+        var perId = $(this).val();
+        loadFeatures(perId);
+    })
+    // Click vào nút submit của phân quyền  
+
+    $(document).on("click", '.decentralization-wrap .btn-order', function () {
+        var btnSelected = $(".dencentralization-wrapp .input-features:checked");
+        console.log(btnSelected);
+        var perSelected = $(".per-wrapp").val();
+        if (btnSelected) {
+            deleteFeaturesOfPermission(perSelected);
+            btnSelected.each(function () {
+                var fid = $(this).attr("fid");
+                insertPermission(fid, perSelected);
+            })
+        }
+
+    })
+
+    function insertPermission(fid, perid) {
+        $.ajax({
+            url: '../function/loadPerAdmin.php',
+            method: 'POST',
+            data: {
+                insertPermission: 1,
+                fid: fid,
+                perid: perid,
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    }
+
+    function deleteFeaturesOfPermission(perid) {
+        $.ajax({
+            url: '../function/loadPerAdmin.php',
+            method: 'POST',
+            data: {
+                deletePermission: 1,
+                perid: perid,
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    }
 
 })

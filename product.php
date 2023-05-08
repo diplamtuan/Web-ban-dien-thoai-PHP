@@ -21,8 +21,8 @@ include 'header.php';
             <span class="menu_arrange-icon"><i class="fa-solid fa-arrow-up-wide-short"></i></span>
             <span class="menu_arrange-text">Sắp xếp theo</span>
             <ul class="menu_list">
-                <li class="menu_item">Giá tăng dần</li>
-                <li class="menu_item">Giá giảm dần</li>
+                <li class="menu_item" cid="asc">Giá tăng dần</li>
+                <li class="menu_item" cid="desc">Giá giảm dần</li>
             </ul>
         </div>
     </div>
@@ -234,7 +234,7 @@ include 'header.php';
 
 
 
-        function loadPage(page, id_brand, input_search, priceStart, priceEnd) {
+        function loadPage(page, id_brand, input_search, priceStart, priceEnd, classify) {
             $.ajax({
                 url: 'function/ajax.pagination.php',
                 method: 'GET',
@@ -244,9 +244,10 @@ include 'header.php';
                     input_search: input_search,
                     priceStart: priceStart,
                     priceEnd: priceEnd,
-
+                    classify: classify,
                 },
                 success: function(data) {
+                    console.log(data);
                     $(".col.product-list").html(data);
                 }
             })
@@ -585,7 +586,42 @@ include 'header.php';
                 return true;
             } else return false;
         }
+        // Click vao su kien loc theo tang dan
+        $(".menu_arrange--wrap .menu_item").click(function() {
+            var elements = $(".menu_arrange--wrap .menu_item");
+            var arrayElements = elements.toArray();
+            for (const item of arrayElements) {
+                item.classList.remove("active");
+            }
+            $(this).addClass('active');
+            var cid = $(this).attr("cid");
+            var page_id = $(".pagination .pagination_btn>.active").attr("id");
+            var id = $(".filter-price-select-list .filter-price-select-item.active").attr("id");
+            console.log(id);
+            var input = $("#search_product").val();
+            var priceStartInput = $(".filter-price-input input:first-child").val();
+            var priceEndInput = $(".filter-price-input input:last-child").val();
+            var brandid = $(".filter-body-list .filter-body-item.active").attr("id");
+            const priceSE = rangesPrice(id);
+            if (priceSE) {
+                priceStart = priceSE[0];
+                priceEnd = priceSE[1];
+                loadPage(page_id, brandid, input, priceStart, priceEnd, cid);
+            } else if (priceStartInput != "" && priceEndInput != "") {
+                loadPage(page_id, brandid, input, priceStartInput, priceEndInput, cid);
+            } else {
+                loadPage(page_id, brandid, input, 0, 0, cid);
+            }
 
+        })
+
+        $(".menu_arrange--wrap .menu_arrange-text").click(function() {
+            var elements = $(".menu_arrange--wrap .menu_item");
+            var arrayElements = elements.toArray();
+            for (const item of arrayElements) {
+                item.classList.remove("active");
+            }
+        })
     });
 </script>
 <div class="footer"></div>

@@ -36,57 +36,163 @@ if (isset($_GET['priceStart']) && isset($_GET['priceEnd'])) {
     $priceEnd = 0;
 }
 
+if (isset($_GET['classify'])) {
+    $classify = $_GET['classify'];
+} else {
+    $classify = 0;
+}
 
 $offset = ($page - 1) * $limit_per_pages;
 
-
-
-if ($id_brand == 0) {
-    if ($input_value == "") {
-        if ($priceStart == 0 && $priceEnd == 0) {
-            $resultOffical = $ProductView->getProductViewByNumberPage($offset, $limit_per_pages, $id_brand);
+if ($classify == 0) {
+    if ($id_brand == 0) {
+        if ($input_value == "") {
+            if ($priceStart == 0 && $priceEnd == 0) {
+                $resultOffical = $ProductView->getProductViewByNumberPage($offset, $limit_per_pages, $id_brand);
+            } else {
+                $resultOfficalOld = $ProductView->getProductsView();
+                $resultOffical = filterPriceStartVsPriceEnd($resultOfficalOld, $priceStart, $priceEnd);
+                $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            }
         } else {
-            $resultOfficalOld = $ProductView->getProductsView();
-            $resultOffical = filterPriceStartVsPriceEnd($resultOfficalOld, $priceStart, $priceEnd);
-            $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            if ($priceStart == 0 && $priceEnd == 0) {
+                $result = $ProductView->getProductsView();
+                $resultOfficalOld = filterSearch($result, $input_value);
+                $resultOffical = filterLimitPage($resultOfficalOld, $offset, $limit_per_pages);
+            } else {
+                $result = $ProductView->getProductsView();
+                $resultOfficalOld = filterSearch($result, $input_value);
+                $resultOffical = filterPriceStartVsPriceEnd($resultOfficalOld, $priceStart, $priceEnd);
+                $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            }
         }
     } else {
-        if ($priceStart == 0 && $priceEnd == 0) {
-            $result = $ProductView->getProductsView();
-            $resultOfficalOld = filterSearch($result, $input_value);
-            $resultOffical = filterLimitPage($resultOfficalOld, $offset, $limit_per_pages);
+        if ($input_value == "") {
+            if ($priceStart == 0 && $priceEnd == 0) {
+                $resultOffical = $ProductView->getProductViewByNumberPage($offset, $limit_per_pages, $id_brand);
+            } else {
+                $resultOffcialOld = $ProductView->getProductsView();
+                $resultOffical = filterBrand($resultOffcialOld, $id_brand);
+                $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            }
         } else {
-            $result = $ProductView->getProductsView();
-            $resultOfficalOld = filterSearch($result, $input_value);
-            $resultOffical = filterPriceStartVsPriceEnd($resultOfficalOld, $priceStart, $priceEnd);
-            $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            if ($priceStart == 0 && $priceEnd == 0) {
+                $result = $ProductView->getProductsView();
+                $resultOffical = filterBrand($result, $id_brand);
+                $resultOffical = filterSearch($resultOffical, $input_value);
+                $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            } else {
+                $result = $ProductView->getProductsView();
+                $resultOffical = filterBrand($result, $id_brand);
+                $resultOffical = filterSearch($resultOffical, $input_value);
+                $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            }
         }
     }
 } else {
-    if ($input_value == "") {
-        if ($priceStart == 0 && $priceEnd == 0) {
-            $resultOffical = $ProductView->getProductViewByNumberPage($offset, $limit_per_pages, $id_brand);
+    if ($classify == 'asc') {
+        if ($id_brand == 0) {
+            if ($input_value == "") {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                } else {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            } else {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOfficalOld = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterLimitPage($resultOfficalOld, $offset, $limit_per_pages);
+                } else {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOfficalOld = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOfficalOld, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            }
         } else {
-            $resultOffcialOld = $ProductView->getProductsView();
-            $resultOffical = filterBrand($resultOffcialOld, $id_brand);
-            $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
-            $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            if ($input_value == "") {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                } else {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            } else {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                    $resultOffical = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                } else {
+                    $resultOffical = $ProductView->getProductByASCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                    $resultOffical = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            }
         }
     } else {
-        if ($priceStart == 0 && $priceEnd == 0) {
-            $result = $ProductView->getProductsView();
-            $resultOffical = filterBrand($result, $id_brand);
-            $resultOffical = filterSearch($resultOffical, $input_value);
-            $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+        if ($id_brand == 0) {
+            if ($input_value == "") {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                } else {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            } else {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOfficalOld = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterLimitPage($resultOfficalOld, $offset, $limit_per_pages);
+                } else {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOfficalOld = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOfficalOld, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            }
         } else {
-            $result = $ProductView->getProductsView();
-            $resultOffical = filterBrand($result, $id_brand);
-            $resultOffical = filterSearch($resultOffical, $input_value);
-            $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
-            $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+            if ($input_value == "") {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                } else {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            } else {
+                if ($priceStart == 0 && $priceEnd == 0) {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                    $resultOffical = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                } else {
+                    $resultOffical = $ProductView->getProductDESCView();
+                    $resultOffical = filterBrand($resultOffical, $id_brand);
+                    $resultOffical = filterSearch($resultOffical, $input_value);
+                    $resultOffical = filterPriceStartVsPriceEnd($resultOffical, $priceStart, $priceEnd);
+                    $resultOffical = filterLimitPage($resultOffical, $offset, $limit_per_pages);
+                }
+            }
         }
     }
 }
+
 
 // Lọc theo brand
 

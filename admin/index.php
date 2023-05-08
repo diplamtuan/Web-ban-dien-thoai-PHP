@@ -11,16 +11,21 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/main123.css">
-    <link rel="stylesheet" href="../assets/css/lehongthai.css">
+
+    <link rel="stylesheet" href="assets/css/main12.css">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+
     <title>Admin</title>
 </head>
 
 <body>
+
     <section id="sidebar">
+
         <a href="#" class="brand"><i></i> Logo</a>
         <ul class="side-menu">
             <li class="dashboard"><a href="#" class="active"><i class="bx bxs-dashboard icon"></i> Dashboard </a></li>
@@ -51,7 +56,14 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
                     <li><a href="#">Thống kê khách hàng</a></li>
                 </ul>
             </li>
+
             <li class="account"><a href="#"><i class="bx bx-clipboard icon"></i>Quản lý tài khoản </a></li>
+
+            <li class="decentralization">
+                <a href="#"><i class="bx bxs-chart icon"></i> Phân quyền</a>
+            </li>
+
+
         </ul>
     </section>
 
@@ -120,8 +132,10 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
 
         </div>
     </div>
+
+    <!-- Modal alert -->
+
     <!--NAVBAR-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -129,12 +143,16 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src="assets/js/Admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.1.1/dist/jquery.table2excel.min.js"></script>
 
-    <script src="./index121234.js"> </script>
     <script src ='assets/thaijs/HTaccount.js'></script>
     <script src ='assets/thaijs/TBaoHanh.js'></script>
     <script src='assets/thaijs/nhanvienTH.js'></script>
     <script src='assets/thaijs/khachhang.js'></script>
     <script src='assets/thaijs/Tkhuyenmai.js'></script>
+
+    <script src="./index11132.js">
+    </script>
+
+
 </body>
 
 </html>

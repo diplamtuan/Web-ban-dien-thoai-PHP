@@ -162,4 +162,39 @@ class Product extends Db
         }
         return false;
     }
+
+    // Ham get san pham theo thu tu tang dan 
+    protected function getProductByASC()
+    {
+        $sql = "SELECT *
+        from dienthoai
+        WHERE dienthoai.trangthai != 'Not Active' AND dienthoai.Soluong != 0
+        order by Giadt ASC";
+        $result = mysqli_query($this->connect(), $sql);
+        $data = [];
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else return false;
+    }
+    // Ham get san pham theo thu thu giam dan
+    protected function getProductDESC()
+    {
+        $sql = "SELECT *
+        from dienthoai
+        WHERE dienthoai.trangthai != 'Not Active' AND dienthoai.Soluong != 0
+        order by Giadt DESC";
+        $result = mysqli_query($this->connect(), $sql);
+        $data = [];
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else return false;
+    }
 }

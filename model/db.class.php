@@ -1,10 +1,12 @@
 <?php
+
+
 class Db
 {
     private $host = 'localhost';
     private $servername = 'root';
     private $pwd = '';
-    private $dbName = 'projectweb2';
+    private $dbName = 'projectphp';
     protected $conn;
     protected function connect()
     {

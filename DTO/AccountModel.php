@@ -1,6 +1,7 @@
 <?php
 class AccountModel
 {
+    private $id_taikhoan;
     private $tendangnhap;
     private $matkhau;
     private $loaitaikhoan;
@@ -8,6 +9,10 @@ class AccountModel
     private $ngaytao;
 
     // set
+    public function setID_TaiKhoan($id_taikhoan)
+    {
+        $this->id_taikhoan = $id_taikhoan;
+    }
     public function setTendangnhap($tendangnhap)
     {
         $this->tendangnhap = $tendangnhap;
@@ -30,6 +35,10 @@ class AccountModel
     }
 
     // get
+    public function getID_TaiKhoan()
+    {
+        return $this->id_taikhoan;
+    }
     public function getTendangnhap()
     {
         return $this->tendangnhap;

@@ -11,7 +11,9 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="assets/css/main12.css">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -31,13 +33,13 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
             <li class="manager">
                 <a href="#"><i class="bx bxs-inbox icon"></i> Quản lý <i class="bx bx-chevron-right icon-right"></i></a>
                 <ul class="side-dropdown">
-                    <li><a href="#">Quản lý tài khoản</a></li>
-                    <li><a href="#">Quản lý bảo hành</a></li>
-                    <li><a href="#">Quản lý khuyến mãi</a></li>
-                    <li><a href="#">Quản lý nhân viên</a></li>
-                    <li><a href="#">Quản lý khách hàng</a></li>
-                    <li><a href="#">Quản lý thương hiệu</a></li>
-                    <li><a href="#">Quản lý nhà cung cấp</a></li>
+                    <!-- <li class="account"><a href="#">Quản lý tài khoản</a></li> -->
+                    <li class="baohanh"><a href="#">Quản lý bảo hành</a></li>
+                    <li class="khuyenmai"><a href="#">Quản lý khuyến mãi</a></li>
+                    <li class="nhanvien"><a href="#">Danh sách nhân viên</a></li>
+                    <li class="khachhang"><a href="#">Danh sách khachhang</a></li>
+                    <li class="#"><a href="#">Quản lý thương hiệu</a></li>
+                    <li class="provider"><a href="#">Quản lý nhà cung cấp</a></li>
                 </ul>
             </li>
             <li class="productAdmin"><a href="#"><i class="bx bx-package icon active"></i> Sản phẩm </a></li>
@@ -54,9 +56,13 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
                     <li><a href="#">Thống kê khách hàng</a></li>
                 </ul>
             </li>
+
+            <li class="account"><a href="#"><i class="bx bx-clipboard icon"></i>Quản lý tài khoản </a></li>
+
             <li class="decentralization">
                 <a href="#"><i class="bx bxs-chart icon"></i> Phân quyền</a>
             </li>
+
 
         </ul>
     </section>
@@ -136,6 +142,12 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="assets/js/Admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.1.1/dist/jquery.table2excel.min.js"></script>
+
+    <script src ='assets/thaijs/HTaccount.js'></script>
+    <script src ='assets/thaijs/TBaoHanh.js'></script>
+    <script src='assets/thaijs/nhanvienTH.js'></script>
+    <script src='assets/thaijs/khachhang.js'></script>
+    <script src='assets/thaijs/Tkhuyenmai.js'></script>
 
     <script src="./index11132.js">
     </script>

@@ -33,4 +33,38 @@ class Custommer extends Db
             return true;
         } else return false;
     }
+
+    protected function getKhachhang($tentaikhoan)
+    {
+        $sql = "SELECT * FROM khachhang where tentaikhoan='$tentaikhoan'";
+        $result = mysqli_query($this->connect(), $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
+            return $row;
+        } else return false;
+    }
+    protected function InputKH($input)
+    {
+        $sql = "SELECT * FROM khachhang where tentaikhoan like '%$input%'";
+        $result = mysqli_query($this->connect(), $sql);
+        $data = [];
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else return false;
+    }
+    protected function IFKhachhang()
+    {
+        $sql = "SELECT * FROM khachhang";
+        $result = mysqli_query($this->connect(), $sql);
+        $data = [];
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else return false;
+    }
 }

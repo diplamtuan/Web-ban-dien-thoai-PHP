@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $passwd = "Diplamtuan123.";
-$dbname = "doanweb2";
+$dbname = "doanweb2_1";
 
 
 // Create connection

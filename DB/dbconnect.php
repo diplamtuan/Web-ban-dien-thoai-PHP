@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$passwd = "";
-$dbname = "projectweb2";
+$passwd = "Diplamtuan123.";
+$dbname = "doanweb2_1";
 
 
 // Create connection

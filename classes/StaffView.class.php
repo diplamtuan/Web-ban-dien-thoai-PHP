@@ -18,6 +18,11 @@ class StaffView extends Staff{
     {
         return $this->InputStaff($tennhanvien);
     } 
+
+    public function getOutputID_nv($tennhanvien)
+    {
+        return $this->OutputID_nv($tennhanvien);
+    } 
 }
 
 ?> 

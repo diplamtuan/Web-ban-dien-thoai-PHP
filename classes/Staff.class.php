@@ -52,8 +52,7 @@ class Staff extends Db{
 
         protected function gettennhanvien($tennhanvien)
     {
-        //  $sql = "SELECT * FROM nhanvien where id_nhanvien = $tennhanvien";
-        $sql = "SELECT nhanvien.tennhanvien,nhanvien.ngaysinh,nhanvien.diachi,nhanvien.gioitinh,nhanvien.sdt,nhanvien.ID_quyen,
+        $sql = "SELECT nhanvien.id_nhanvien,nhanvien.tennhanvien,nhanvien.ngaysinh,nhanvien.diachi,nhanvien.gioitinh,nhanvien.sdt,nhanvien.ID_quyen,
         quyen.tenquyen FROM nhanvien,quyen where nhanvien.ID_quyen = quyen.id_quyen and nhanvien.tennhanvien = '$tennhanvien'";
 
         $result = mysqli_query($this->connect(), $sql);
@@ -95,5 +94,18 @@ class Staff extends Db{
             return $data;
         } else return false;
     }
+
+    protected function OutputID_nv($tennhanvien)
+    {
+        $sql = "SELECT * FROM nhanvien where tennhanvien = '$tennhanvien'";
+       
+        $result = mysqli_query($this->connect(), $sql);
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck > 0) {
+            $row = mysqli_fetch_array($result);
+            return $row;
+        }
+        return false;
+        }
 }
 ?>

@@ -4,13 +4,13 @@ if (isset($_POST['loadAccount'])) {
     $per_page_limit = 6;
 
     $AccountView = new AccountView();
-    if (isset($_POST['getdataAccount'])) {
-        $account = $AccountView->getAllAccount();
-    }
-    if (isset($_POST['search_account'])) {
+    if (isset($_POST['search_account'])!='') {
         $input = $_POST['input'];
             $account = $AccountView->getInputAccount($input);
         
+    }
+    else{
+        $account = $AccountView->getAllAccount();
     }
     if (isset($_POST['page_no'])) {
         $page_no = $_POST['page_no'];
@@ -417,7 +417,7 @@ if (isset($_POST['loadPaginationAccount'])) {
     }
     $accountView = new AccountView();
     $per_page_limit = 6;
-    if (isset($_POST['input'])) {
+    if (isset($_POST['input'])!='') {
         $input = $_POST['input'];
         $result = $accountView->getInputAccount($input);
 

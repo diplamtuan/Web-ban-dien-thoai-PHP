@@ -2,7 +2,7 @@
     background-color: burlywood;
 }
 
-.form-input-account input,.form-input-baohanh input,.form-input-KhuyenMai input  {
+.form-input-account input,.form-input-baohanh input,.form-input-thuonghieu input,.form-input-nhacungcap input,.form-input-KhuyenMai input  {
     background: transparent;
     outline: none;
     padding: 8px 50px;
@@ -12,7 +12,7 @@
     width: 90%;
 }
 
-select#gioitinh,select#loaitk,select#quyentk,#gioitinhKH {
+select#gioitinh,select#loaitk,select#quyentk,#gioitinhKH,#PN_id_dienthoai,#PN_id_nhacungcap{
     background: transparent;
     outline: none;
     padding: 8px 50px;
@@ -26,4 +26,11 @@ td {
     text-align: center;
     vertical-align: middle;
     font-size: 1.5rem;
+}
+
+.taget td{
+    height: 5px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem;
 }

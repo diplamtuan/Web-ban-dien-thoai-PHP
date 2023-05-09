@@ -9,7 +9,7 @@ $(document).ready(function () {
             success: function (data) {
                 $("main").html(data);
                 loadAccount(1);
-                loadPaginationAccount(1,'');
+                loadPaginationAccount(1);
             }
         })
     })
@@ -208,12 +208,13 @@ function checkInPutMK(data) {
     var current_page = 1;
 
     $(document).on('click', ".account-page-no", function () {
+        $('#search_account').val('');
         var input = $('#search_account').val();
         var id_page = $(this).text();
         current_page = id_page; 
         loadAccount(id_page,input);
         loadPaginationAccount(id_page,input);
-        $('#search_account').val('');
+        
     })
 
     $(document).on('keyup','#search_account', function() {

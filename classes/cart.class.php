@@ -26,6 +26,9 @@ class Cart extends Db
         if (mysqli_query($conn, $sql)) {
             $order_id = mysqli_insert_id($conn);
             if ($order_id != 0) {
+                echo "day la order id";
+                echo $order_id;
+                echo "day la order id";
                 return $order_id;
             } else {
                 return false;

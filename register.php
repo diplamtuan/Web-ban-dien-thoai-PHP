@@ -88,13 +88,12 @@ include 'header.php';
                                     $("[name=email]").siblings("[class=form__error-message]").text("Email đã tồn tại");
                                     $("[name=email]").parent().addClass("invalid");
                                 } else {
-                                    var result = confirm(data);
-                                    if (result) {
+                                    if (data == "Đăng ký thành công") {
+                                        alert("Đăng ký thành công");
                                         location.href = 'login.php';
                                     } else {
-                                        location.href = 'login.php';
+                                        var result = confirm(data);
                                     }
-
                                 }
                             }
                         }

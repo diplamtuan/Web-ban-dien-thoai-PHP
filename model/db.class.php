@@ -6,7 +6,7 @@ class Db
     private $host = 'localhost';
     private $servername = 'root';
     private $pwd = 'Diplamtuan123.';
-    private $dbName = 'doanweb2_1';
+    private $dbName = 'doanweb2';
     protected $conn;
     protected function connect()
     {

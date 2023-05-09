@@ -511,17 +511,21 @@ $(document).ready(function () {
     // Click vào nút submit của phân quyền  
 
     $(document).on("click", '.decentralization-wrap .btn-order', function () {
-        var btnSelected = $(".dencentralization-wrapp .input-features:checked");
-        console.log(btnSelected);
-        var perSelected = $(".per-wrapp").val();
-        if (btnSelected) {
-            deleteFeaturesOfPermission(perSelected);
-            btnSelected.each(function () {
-                var fid = $(this).attr("fid");
-                insertPermission(fid, perSelected);
-            })
+        var result = confirm("Bạn có muốn submit không ?");
+        if (result) {
+            var btnSelected = $(".dencentralization-wrapp .input-features:checked");
+            var perSelected = $(".per-wrapp").val();
+            if (btnSelected.length > 0) {
+                deleteFeaturesOfPermission(perSelected);
+                btnSelected.each(function () {
+                    var fid = $(this).attr("fid");
+                    insertPermission(fid, perSelected);
+                })
+                alert("Sửa thành công");
+            } else {
+                deleteFeaturesOfPermission(perSelected);
+            }
         }
-
     })
 
     function insertPermission(fid, perid) {
@@ -552,5 +556,22 @@ $(document).ready(function () {
             }
         })
     }
+
+    // Load giao dien theo quyen
+    // function loadMainAdminByPermission() {
+    //     $.ajax({
+    //         url: '../function/loadAdminByPermission.php',
+    //         method: 'POST',
+    //         data: {
+    //             loadMainByPermission: 1
+    //         },
+    //         success: function (data) {
+    //             console.log(data);
+    //             $(".side-menu").html(data);
+    //         }
+    //     })
+    // }
+    // loadMainAdminByPermission();
+
 
 })

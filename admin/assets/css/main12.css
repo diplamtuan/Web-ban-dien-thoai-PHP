@@ -762,3 +762,15 @@ main .card .label {
         right: calc(50% - 5px);
     }
 }
+
+/* alert product */
+.alert-product {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Phân quyền */
+
+
+/* dropdown list */

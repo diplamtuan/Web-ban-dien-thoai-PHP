@@ -28,42 +28,61 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
 
         <a href="#" class="brand"><i></i> Logo</a>
         <ul class="side-menu">
+
+
             <li class="dashboard"><a href="#" class="active"><i class="bx bxs-dashboard icon"></i> Dashboard </a></li>
             <li class="divider">MAIN</li>
-            <li class="manager">
-                <a href="#"><i class="bx bxs-inbox icon"></i> Quản lý <i class="bx bx-chevron-right icon-right"></i></a>
-                <ul class="side-dropdown">
-                    <!-- <li class="account"><a href="#">Quản lý tài khoản</a></li> -->
-                    <li class="baohanh"><a href="#">Quản lý bảo hành</a></li>
-                    <li class="khuyenmai"><a href="#">Quản lý khuyến mãi</a></li>
-                    <li class="nhanvien"><a href="#">Danh sách nhân viên</a></li>
-                    <li class="khachhang"><a href="#">Danh sách khachhang</a></li>
-                    <li class="#"><a href="#">Quản lý thương hiệu</a></li>
-                    <li class="provider"><a href="#">Quản lý nhà cung cấp</a></li>
-                </ul>
-            </li>
-            <li class="productAdmin"><a href="#"><i class="bx bx-package icon active"></i> Sản phẩm </a></li>
-            <li class="order"><a href="#"><i class="bx bx-clipboard icon"></i> Đơn hàng </a></li>
-            <li class="coupon"><a href="#"><i class="bx bx-money-withdraw icon"></i> Phiếu nhập </a></li>
+            <?php
+            if (isset($_SESSION['auth_user']['detailFeatures'])) {
+                $detailFt = $_SESSION['auth_user']['detailFeatures'];
+            }
+
+            if (in_array(9, $detailFt)) {
+            ?>
+                <li class="manager">
+                    <a href="#"><i class="bx bxs-inbox icon"></i> Quản lý <i class="bx bx-chevron-right icon-right"></i></a>
+                    <ul class="side-dropdown">
+                        <!-- <li class="account"><a href="#">Quản lý tài khoản</a></li> -->
+                        <li class="baohanh"><a href="#">Quản lý bảo hành</a></li>
+                        <li class="khuyenmai"><a href="#">Quản lý khuyến mãi</a></li>
+                        <li class="nhanvien"><a href="#">Danh sách nhân viên</a></li>
+                        <li class="khachhang"><a href="#">Danh sách khachhang</a></li>
+                        <li class="#"><a href="#">Quản lý thương hiệu</a></li>
+                        <li class="provider"><a href="#">Quản lý nhà cung cấp</a></li>
+                    </ul>
+                </li>
+            <?php } ?>
+            <?php if (in_array(1, $detailFt)) { ?>
+                <li class="productAdmin"><a href="#"><i class="bx bx-package icon active"></i> Sản phẩm </a></li>
+            <?php } ?>
+            <?php if (in_array(2, $detailFt)) { ?>
+                <li class="order"><a href="#"><i class="bx bx-clipboard icon"></i> Đơn hàng </a></li>
+            <?php } ?>
+            <?php if (in_array(4, $detailFt)) { ?>
+                <li class="coupon"><a href="#"><i class="bx bx-money-withdraw icon"></i> Phiếu nhập </a></li>
+            <?php } ?>
+
             <li class="divider">Table and forms</li>
             <!-- <li><a href="#"><i class="bx bx-table icon"></i> Tables </a></li> -->
-            <li class="statistic">
-                <a href="#"><i class="bx bxs-chart icon"></i> Thống kê<i class="bx bx-chevron-right icon-right"></i></a>
-                <ul class="side-dropdown">
-                    <li><a href="#">Thống kê hoá đơn</a></li>
-                    <li><a href="#">Thống kê tổng tiền</a></li>
-                    <li><a href="#">Thống kê sản phẩm</a></li>
-                    <li><a href="#">Thống kê khách hàng</a></li>
-                </ul>
-            </li>
-
-            <li class="account"><a href="#"><i class="bx bx-clipboard icon"></i>Quản lý tài khoản </a></li>
-
-            <li class="decentralization">
-                <a href="#"><i class="bx bxs-chart icon"></i> Phân quyền</a>
-            </li>
-
-
+            <?php if (in_array(8, $detailFt)) { ?>
+                <li class="statistic">
+                    <a href="#"><i class="bx bxs-chart icon"></i> Thống kê<i class="bx bx-chevron-right icon-right"></i></a>
+                    <ul class="side-dropdown">
+                        <li><a href="#">Thống kê hoá đơn</a></li>
+                        <li><a href="#">Thống kê tổng tiền</a></li>
+                        <li><a href="#">Thống kê sản phẩm</a></li>
+                        <li><a href="#">Thống kê khách hàng</a></li>
+                    </ul>
+                </li>
+            <?php } ?>
+            <?php if (in_array(3, $detailFt)) { ?>
+                <li class="account"><a href="#"><i class="bx bx-clipboard icon"></i>Quản lý tài khoản </a></li>
+            <?php } ?>
+            <?php if (in_array(7, $detailFt)) { ?>
+                <li class="decentralization">
+                    <a href="#"><i class="bx bxs-chart icon"></i> Phân quyền</a>
+                </li>
+            <?php } ?>
         </ul>
     </section>
 
@@ -143,8 +162,8 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src="assets/js/Admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.1.1/dist/jquery.table2excel.min.js"></script>
 
-    <script src ='assets/thaijs/HTaccount.js'></script>
-    <script src ='assets/thaijs/TBaoHanh.js'></script>
+    <script src='assets/thaijs/HTaccount.js'></script>
+    <script src='assets/thaijs/TBaoHanh.js'></script>
     <script src='assets/thaijs/nhanvienTH.js'></script>
     <script src='assets/thaijs/khachhang.js'></script>
     <script src='assets/thaijs/Tkhuyenmai.js'></script>

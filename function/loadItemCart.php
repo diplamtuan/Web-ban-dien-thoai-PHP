@@ -251,37 +251,39 @@ if (isset($_POST['checkOut'])) {
         $Cart->setTrangthaidonhang($trangthaidonhang);
         $Cart->setNgaygiaohang($Ngaygiaohang);
         $order_id = $CartCtrl->inserCartCtrl($Cart);
-        // Cart Details
-        // Tao chi tiet don hang
-        $result = $_SESSION['cart'];
-        foreach ($result as $item) {
-
-            $productView = new ProductView();
-            $productCtrl = new ProductCtrl();
-            $id_dienthoai = $item['product_id'];
-            // Lay du lieu product 
-            $productObj = $productView->getProductByIdView($id_dienthoai);
-            // Lay so luong product hien tai
-            $productQty = $productObj['Soluong'];
-            $soluong = $item['quantity'];
-            $productQtyAfter = (int)$productQty - (int)$soluong;
-            $gia = $item['priceOld'];
-            $ID_khuyenmai = $item['ID_khuyenmai'];
-            $ID_baohanh = $item['ID_baohanh'];
-            $giasaukm = $item['price'];
-            $CartDetail = new CartDetailModel();
-            $CartDetail->setID_donhang($order_id);
-            $CartDetail->setID_dienthoai($id_dienthoai);
-            $CartDetail->setSoluong($soluong);
-            $CartDetail->setGia($gia);
-            $CartDetail->setID_khuyenmai($ID_khuyenmai);
-            $CartDetail->setID_baohanh($ID_baohanh);
-            $CartDetail->setGiasaukm($giasaukm);
-            // Goi ham update quantity product va insertCart
-            if ($productCtrl->updateProductQuantityCtrl($id_dienthoai, $productQtyAfter)) {
-                $CartCtrl->insertCartDetailCtrl($CartDetail);
-                $_SESSION['cart'] = [];
-            } else echo "false";
+        if ($order_id) {
+            $result = $_SESSION['cart'];
+            foreach ($result as $item) {
+                $productView = new ProductView();
+                $productCtrl = new ProductCtrl();
+                $id_dienthoai = $item['product_id'];
+                // Lay du lieu product 
+                $productObj = $productView->getProductByIdView($id_dienthoai);
+                // Lay so luong product hien tai
+                $productQty = $productObj['Soluong'];
+                $soluong = $item['quantity'];
+                $productQtyAfter = (int)$productQty - (int)$soluong;
+                $gia = $item['priceOld'];
+                $ID_khuyenmai = $item['ID_khuyenmai'];
+                $ID_baohanh = $item['ID_baohanh'];
+                $giasaukm = $item['price'];
+                $CartDetail = new CartDetailModel();
+                $CartDetail->setID_donhang($order_id);
+                $CartDetail->setID_dienthoai($id_dienthoai);
+                $CartDetail->setSoluong($soluong);
+                $CartDetail->setGia($gia);
+                $CartDetail->setID_khuyenmai($ID_khuyenmai);
+                $CartDetail->setID_baohanh($ID_baohanh);
+                $CartDetail->setGiasaukm($giasaukm);
+                echo "bbb";
+                // Goi ham update quantity product va insertCart
+                if ($productCtrl->updateProductQuantityCtrl($id_dienthoai, $productQtyAfter)) {
+                    $CartCtrl->insertCartDetailCtrl($CartDetail);
+                    $_SESSION['cart'] = [];
+                } else echo "false";
+            }
+        } else {
+            echo "false";
         }
     } else {
         echo "Chưa đăng nhập";

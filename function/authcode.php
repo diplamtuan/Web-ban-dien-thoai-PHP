@@ -4,8 +4,8 @@ include '../DB/dbconnect.php';
 include '../includes/autoload.php';
 
 if (isset($_POST['register'])) {
-    $account = new AccountModel();
     $accountCtrl = new AccountCtrl();
+    $account = new AccountModel();
     $username = $_POST['register']['username'];
     $address = $_POST['register']['address'];
     $phone = $_POST['register']['phone'];
@@ -87,15 +87,26 @@ if (isset($_POST['login'])) {
                 $userdata = mysqli_fetch_array(mysqli_query($conn, $queryData));
                 $id_nhanvien = $userdata['id_nhanvien'];
                 $id_quyen = $userdata['ID_quyen'];
+                $featuresView = new FeaturesView();
+                $resultFt = $featuresView->getFeaturesByIdPerView($id_quyen);
+                $detailFeatures = [];
+                if ($resultFt) {
+                    foreach ($resultFt as $itemFt) {
+                        $detailFeatures[] = $itemFt['id_chucnang'];
+                    }
+                }
                 $_SESSION['auth'] = true;
                 $_SESSION['auth_user'] = [
                     'username' => $tentaikhoan,
                     'id_nhanvien' => $id_nhanvien,
                     'id_quyen' => $id_quyen,
+                    'detailFeatures' => $detailFeatures,
                 ];
                 echo "Day la nhan vien";
             }
         }
+    } else {
+        echo "Sai tài khoản hoặc mật khẩu";
     }
 }
 if (isset($_POST['logout'])) {

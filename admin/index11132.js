@@ -515,7 +515,7 @@ $(document).ready(function () {
         if (result) {
             var btnSelected = $(".dencentralization-wrapp .input-features:checked");
             var perSelected = $(".per-wrapp").val();
-            if (btnSelected) {
+            if (btnSelected.length > 0) {
                 deleteFeaturesOfPermission(perSelected);
                 btnSelected.each(function () {
                     var fid = $(this).attr("fid");
@@ -523,7 +523,7 @@ $(document).ready(function () {
                 })
                 alert("Sửa thành công");
             } else {
-                alert("Sửa thất bại");
+                deleteFeaturesOfPermission(perSelected);
             }
         }
     })
@@ -556,5 +556,22 @@ $(document).ready(function () {
             }
         })
     }
+
+    // Load giao dien theo quyen
+    // function loadMainAdminByPermission() {
+    //     $.ajax({
+    //         url: '../function/loadAdminByPermission.php',
+    //         method: 'POST',
+    //         data: {
+    //             loadMainByPermission: 1
+    //         },
+    //         success: function (data) {
+    //             console.log(data);
+    //             $(".side-menu").html(data);
+    //         }
+    //     })
+    // }
+    // loadMainAdminByPermission();
+
 
 })

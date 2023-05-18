@@ -201,15 +201,55 @@ $id = $phieunhapCtrl->inserPhieuNhapCtrl($phieunhapModel);
 if(isset($_POST['DetailPhieunhap'])){
     $id_phieunhap = $_POST['id_Phieunhap'];
     $trangthai =  $_POST['trangthaiPn'];
-    if($trangthai == 'Đang xử lý'){
-   $output = '';
-   $output.="
-    <div class='modal-footer'>
-        <button type='button' class='btn btn-secondary Huy_PN' trangthai='$trangthai' id_phieunhap='$id_phieunhap'>Hủy phiếu nhập</button>
-        <button type='button' class='btn btn-primary HoanTat_PN' trangthai='$trangthai' id_phieunhap='$id_phieunhap'>Hoàn thành phiếu nhập</button>
-    </div>";
-    echo $output;
-    }
+
+        echo '<h1 style = "text-align:center;">Chi tiết phiếu nhập</h1>';
+        echo $id_phieunhap;
+        
+        $output = '';
+        $output.="
+        <div class='table-responsive' style='position: relative; '>
+        <table class='table table-striped mb-0'>
+            <thead style='background-color: #002d72;'>
+                <tr style='color:white;'>
+                    <th scope='col'>Id_điện thoại</th>
+                    <th scope='col'>Tên điện thoại</th>
+                    <th scope='col'>Số lượng </th>
+                    <th scope='col'>Giá</th>
+                </tr>
+            </thead>
+            <tbody>";
+            $PhieunhapView = new PhieunhapView();
+             $resultPhieunhap = $PhieunhapView->getIdPhieunhap($id_phieunhap);
+         foreach($resultPhieunhap as $dataPhieunhap){
+            $id_dienthoai_PN = $dataPhieunhap['id_dienthoai'];
+            $tendienthoai_PN = $dataPhieunhap['Tendt'];
+            $soluong_PN = $dataPhieunhap['soluong'];
+            $gia_PN = $dataPhieunhap['gia'];
+            $output.="
+            <tr>
+                <td>$id_dienthoai_PN</td>
+                <td>$tendienthoai_PN</td>
+                <td>$soluong_PN</td>
+                <td>$gia_PN</td>
+            </tr>
+            ";
+         }
+         
+            $output.="</tbody>
+        </table>
+        <button style='margin-left:450px' type='button' class='btn btn-secondary close-EditPhieunhap' data-bs-dismiss='modal'>Close</button>
+
+        ";
+       
+
+        if($trangthai == "Đang xử lý"){
+            $output.="
+             <div class='modal-footer'>
+                 <button type='button' class='btn btn-secondary Huy_PN' trangthai='$trangthai' id_phieunhap='$id_phieunhap'>Hủy phiếu nhập</button>
+                 <button type='button' class='btn btn-primary HoanTat_PN' trangthai='$trangthai' id_phieunhap='$id_phieunhap'>Hoàn thành phiếu nhập</button>
+             </div>";
+             }
+        echo $output;
 }
 
 if(isset($_POST['HuyPhieuNhap'])){

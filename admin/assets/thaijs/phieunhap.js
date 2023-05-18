@@ -45,6 +45,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $(".product-edit-form .modal-content").html(data);
+
                 
             }
         })
@@ -60,7 +61,9 @@ $(document).ready(function () {
                 id_phieunhap: id_phieunhap
             },
             success: function (data) {
-                $(".phieunhap-wrapp").html(data);
+                // $(".phieunhap-wrapp").html(data);
+                loadPhieunhap();
+                $(".close-EditPhieunhap").click();
             }
         })
     })
@@ -77,8 +80,9 @@ $(document).ready(function () {
                 id_phieunhap: id_phieunhap
             },
             success: function (data) {
-                $(".phieunhap-wrapp").html(data);
-
+                // $(".phieunhap-wrapp").html(data);
+                loadPhieunhap();
+                $(".close-EditPhieunhap").click();
             }
             
         })
@@ -194,13 +198,6 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click', '.delete-templeCT_PN', function () {
-        var stt = $(this).closest('tr').data('stt');
-
-        tempArr.splice(stt, 1);
-        $(this).closest('tr').remove();
-
-    });
     $(document).on('click', '.them-PN', function () {
         var gia = $('.product-add-form .input-price_phieunhap').val();
         var soluong = $('.product-add-form .input-quantity_phieunhap').val();
@@ -238,9 +235,9 @@ $(document).ready(function () {
 
                 if (data.trim() == 'add') {
                     alert('Tạo phiếu nhập thành công');
-                    loadPhieunhap('');
-                    $(".close-Phieunhap").click();
                 }
+                loadPhieunhap();
+                $(".close-Phieunhap").click();
             }
         })
 
@@ -255,14 +252,10 @@ $(document).ready(function () {
     function generateTableRow(stt, id_nhacungcap, tendienthoai, id_dienthoai, gia, soluong) {
         stt += 1;
         return '<tr data-stt="' + id_dienthoai + '">' +
-            //   '<td>' + stt + '</td>' +
             '<td>' + id_dienthoai + '</td>' +
             '<td>' + tendienthoai + '</td>' +
             '<td>' + soluong + '</td>' +
             '<td>' + parseInt(gia) + '</td>' +
-            //   '<td>' + 
-            //      "<i class='fa-solid fa-trash delete-templeCT_PN'></i>"
-            //  + '</td>' +
             '</tr>';
     }
 

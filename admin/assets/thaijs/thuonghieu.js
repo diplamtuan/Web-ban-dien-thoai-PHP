@@ -176,9 +176,7 @@ $(document).on('click','.product-edit-form .edit-Thuonghieu',function(){
                         }else {
                             alert("Vui lòng nhập tên thương hiệu");
                                 $(".input-nameThuonghieu").focus();
-                            }
-                        
-                
+                            }      
     })
     $(document).on('change', '.product-add-form  .file-inputthuonghieu', function () {
         const file = $(this)[0].files[0];

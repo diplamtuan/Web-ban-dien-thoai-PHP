@@ -7,10 +7,6 @@ class PhieunhapView extends Phieunhap
     }
    
 
-   
-
-
-
     public function getIdPhieunhap($id){
         return $this->IdPhieunhap($id);
     }

@@ -6,7 +6,7 @@ echo "<div class='d-flex justify-content-around align-items-center order-control
 </select>
 </div>
  
-<button class='blob-btn btn-order'>
+<button class='blob-btn btn-phanquyen'>
     Submit
     <span class='blob-btn__inner'>
         <span class='blob-btn__blobs'>

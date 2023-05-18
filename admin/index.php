@@ -145,7 +145,6 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src="assets/js/Admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.1.1/dist/jquery.table2excel.min.js"></script>
 
-    <script src="./index121234.js"> </script>
     <script src ='assets/thaijs/accountLHT.js'></script>
     <script src ='assets/thaijs/HTaccount.js'></script>
     <script src ='assets/thaijs/TBaoHanh.js'></script>
@@ -153,10 +152,10 @@ if (!isset($_SESSION['auth']) && !isset($_SESSION['auth_user']['id_nhanvien'])) 
     <script src='assets/thaijs/khachhang.js'></script>
     <script src='assets/thaijs/Tkhuyenmai.js'></script>
     <script src='assets/thaijs/nhacungcap.js'></script>
-    <script src='assets/thaijs/thuonghieu1.js'></script>
-    <script src='assets/thaijs/phieunhap1.js'></script>
+    <script src='assets/thaijs/thuonghieu.js'></script>
+    <script src='assets/thaijs/phieunhap.js'></script>
 
-    <script src="./index11132.js">
+    <script src="./index1112.js">
     </script>
 
 

@@ -4,8 +4,8 @@ include '../DB/dbconnect.php';
 include '../includes/autoload.php';
 
 if (isset($_POST['register'])) {
-    $account = new AccountModel();
     $accountCtrl = new AccountCtrl();
+    $account = new AccountModel();
     $username = $_POST['register']['username'];
     $address = $_POST['register']['address'];
     $phone = $_POST['register']['phone'];

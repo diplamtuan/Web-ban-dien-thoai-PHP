@@ -93,6 +93,10 @@ if (isset($_POST['insert_Thuonghieu'])) {
     $ThuonghieuCtl = new ThuonghieuCtrl();
     $ThuonghieuModel = new ThuonghieuModel();
 
+  
+
+
+
         $ThuonghieuModel->setTenThuonghieu($tenThuonghieu);
         $ThuonghieuModel->setanhthuonghieu($image);
         $ThuonghieuModel->setTrangthai($trangthai);
